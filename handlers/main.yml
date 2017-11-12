@@ -1,2 +1,4 @@
 ---
 # handlers file for ansible-role-dns
+- name: reload zones
+  command: rndc reload

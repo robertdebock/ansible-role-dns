@@ -26,3 +26,5 @@
     dest: "{{ zonesdir }}/{{ item }}.conf"
   with_items:
     - "{{ records }}"
+  notify:
+    reload zones
