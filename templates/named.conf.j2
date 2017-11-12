@@ -5,6 +5,11 @@ options {
   recursion no;
 };
 
+zone "." {
+	type hint;
+	file "/etc/bind/named.root";
+};
+
 {% for zone in zones %}
 zone "{{ zone.name }}" {
   type master;

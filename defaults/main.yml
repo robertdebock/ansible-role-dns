@@ -1,6 +1,15 @@
 ---
 # defaults file for ansible-role-dns
 zones:
+  - name: localhost
+    records:
+    - name: @
+      type: A
+      value: 127.0.0.1
+    - name: @
+      type: AAAA
+      value: ::1
+
   - name: example.com
     records:
     - name: www

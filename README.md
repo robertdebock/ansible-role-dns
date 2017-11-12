@@ -7,6 +7,7 @@ Requirements
 ------------
 
 Access to a repository that provides the package for bind.
+Access to internet to download ftp://ftp.internic.net/domain/named.root.
 
 Role Variables
 --------------

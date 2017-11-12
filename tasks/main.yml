@@ -20,6 +20,11 @@
   with_items:
     - "{{ services }}"
 
+- name: get most recent version of the hints/root file
+  get_url:
+    url: ftp://ftp.internic.net/domain/named.root
+    path: "{{ zonesdir }}/named.root"
+
 - name: create zone files
   template:
     src: templates/zone.j2
@@ -31,7 +36,7 @@
 
 - name: add zones to configuration
   template:
-    src: templates/named.conf.local.j2
-    dest: "{{ confdir }}/named.conf.local"
+    src: templates/named.conf.j2
+    dest: "{{ confdir }}/named.conf"
   notify:
     reload configuration
