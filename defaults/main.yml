@@ -3,6 +3,6 @@
 zones:
   - name: example.com
     records:
-    - name: www:
+    - name: www
       type: A
       value: 127.0.0.1
