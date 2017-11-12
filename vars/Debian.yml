@@ -3,3 +3,4 @@ packages:
   - bind9
 services:
   - bind9
+zonesdir: /etc/bind
