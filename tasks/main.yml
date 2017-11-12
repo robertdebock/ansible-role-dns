@@ -23,6 +23,6 @@
 - name: create zone files
   template:
     src: templates/zone.j2
-    dest: "{{ zonesdir }}"/"{{ item }}".conf
+    dest: "{{ zonesdir }}/{{ item }}.conf"
   with_items:
     - "{{ records }}"
