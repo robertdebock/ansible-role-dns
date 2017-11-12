@@ -1,0 +1,7 @@
+{% for zone in zones %}
+zone "{{ zone.name }}" {
+  type master;
+  notify no;
+  file "/etc/bind/{{ zone.name }}.conf";
+};
+{% endfor %}

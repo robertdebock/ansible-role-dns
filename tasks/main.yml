@@ -23,8 +23,13 @@
 - name: create zone files
   template:
     src: templates/zone.j2
-    dest: "{{ zonesdir }}/{{ zone }}.conf"
+    dest: "{{ zonesdir }}/{{ name }}.conf"
   with_items:
-    - "{{ records }}"
+    - "{{ zones }}"
   notify:
     reload zones
+
+- name: add zones to configuration
+  template:
+    src: templates/named.conf.local.j2
+    dest: /etc/bind/named.conf.local
