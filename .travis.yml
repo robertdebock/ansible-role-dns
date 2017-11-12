@@ -1,0 +1,19 @@
+---
+language: python
+sudo: required
+service: docker
+
+env:
+  - ANSIBLE_ROLES_PATH: ../
+
+install:
+  - pip install ansible
+
+script:
+  - test -f requirements.yml && ansible-galaxy install --ignore-certs --role-file requirements.yml || echo "No requirements.yml found."
+  - ansible-playbook --inventory tests/inventory tests/test.yml --syntax-check
+  - ansible-playbook --inventory tests/inventory tests/test.yml --connection=local --become
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
