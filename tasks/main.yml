@@ -20,16 +20,6 @@
     - "{{ zonesdir }}"
     - "{{ confdir }}"
 
-- name: clean all zones
-  file:
-    path: "{{ zonesdir }}/"
-    state: absent
-
-- name: clean all configuration
-  file:
-    path: "{{ confdir }}/"
-    state: absent
-
 - name: get most recent version of the hints/root file
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
