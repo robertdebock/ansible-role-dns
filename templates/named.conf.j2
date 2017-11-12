@@ -5,7 +5,7 @@ options {
   recursion no;
 };
 
-{% if caching_dns is yes %}
+{% if caching_dns is defined %}
 zone "." {
 	type hint;
 	file "/etc/bind/named.root";

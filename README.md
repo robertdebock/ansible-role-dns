@@ -23,6 +23,8 @@ records:
 
 - type can be: A or CNAME
 
+if you set "caching_dns" (to any value) your dns server will act as a caching nameserver.
+
 Dependencies
 ------------
 
