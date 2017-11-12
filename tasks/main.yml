@@ -12,13 +12,15 @@
   with_items:
     - "{{ packages }}"
 
-- name: start and enable software
-  service:
-    name: "{{ item }}"
-    state: started
-    enabled: yes
-  with_items:
-    - "{{ services }}"
+- name: Clean all zones
+  file:
+    state: absent
+    path: "{{ zonesdir }}/"
+
+- name: Clean all configuration
+  file:
+    state: absent
+    path: "{{ confdir }}/"
 
 - name: get most recent version of the hints/root file
   get_url:
@@ -40,3 +42,11 @@
     dest: "{{ confdir }}/named.conf"
   notify:
     reload configuration
+
+- name: start and enable software
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - "{{ services }}"
