@@ -23,7 +23,7 @@
 - name: get most recent version of the hints/root file
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
-    path: "{{ zonesdir }}/named.root"
+    dest: "{{ zonesdir }}/named.root"
 
 - name: create zone files
   template:
