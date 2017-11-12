@@ -36,6 +36,8 @@
     dest: "{{ zonesdir }}/named.root"
   when:
     - caching_dns == true
+  notify:
+    reload configuration
 
 - name: create zone files
   template:
