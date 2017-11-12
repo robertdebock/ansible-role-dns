@@ -1,4 +1,3 @@
 ---
 # vars file for ansible-role-dns
 zonesdir: /var/named
-confdir: /etc/named
