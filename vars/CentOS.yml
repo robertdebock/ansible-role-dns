@@ -4,3 +4,4 @@ packages:
 services:
   - bind
 zonesdir: /var/named
+confdir: /etc

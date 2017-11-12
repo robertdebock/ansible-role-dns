@@ -32,4 +32,4 @@
 - name: add zones to configuration
   template:
     src: templates/named.conf.local.j2
-    dest: /etc/bind/named.conf.local
+    dest: "{{ confdir }}/named.conf.local"

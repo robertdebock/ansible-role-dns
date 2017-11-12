@@ -4,3 +4,4 @@ packages:
 services:
   - bind9
 zonesdir: /etc/bind
+confdir: /etc/bind
