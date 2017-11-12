@@ -1,3 +1,10 @@
+options {
+  listen-on port 53 { 0.0.0.0; };
+  directory	"{{ zonesdir }}";
+	allow-query { any; };
+  recursion no;
+};
+
 {% for zone in zones %}
 zone "{{ zone.name }}" {
   type master;
