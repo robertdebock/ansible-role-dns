@@ -3,16 +3,16 @@
 zones:
   - name: localhost
     records:
-    - name: @
+    - name: "@"
       type: A
       value: 127.0.0.1
-    - name: @
+    - name: "@"
       type: AAAA
       value: ::1
 
   - name: 127.in-addr.arpa
     records:
-    - name: @
+    - name: "@"
       type: NS
       value: localhost
     - name: 1.0.0
@@ -21,13 +21,13 @@ zones:
 
   - name: 0.in-addr.arpa
     records:
-    - name: @
+    - name: "@"
       type: NS
       value: localhost
 
   - name: 255.in-addr.arpa
     records:
-    - name: @
+    - name: "@"
       type: NS
       value: localhost
 
