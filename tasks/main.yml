@@ -33,3 +33,5 @@
   template:
     src: templates/named.conf.local.j2
     dest: "{{ confdir }}/named.conf.local"
+  notify:
+    reload configuration
