@@ -1,6 +1,6 @@
-$ORIGIN {{ zone.name }}.
+$ORIGIN {{ item.name }}.
 $TTL 86400
-@	IN	SOA	dns1.{{ zone.name }}.	hostmaster.{{ zone.name }}. (
+@	IN	SOA	dns1.{{ item.name }}.	hostmaster.{{ item.name }}. (
 			2001062501 ; serial
 			21600      ; refresh after 6 hours
 			3600       ; retry after 1 hour
@@ -15,6 +15,6 @@ $TTL 86400
 	IN	MX	10	mail.example.com.
 	IN	MX	20	mail2.example.com.
 
-{% for record in zone.records %}
+{% for record in item.records %}
 {{ record.name }} IN {{ record.type }} {{ record.value }}
 {% endfor %}
