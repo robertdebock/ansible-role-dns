@@ -34,6 +34,8 @@
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
     dest: "{{ zonesdir }}/named.root"
+  when:
+    - caching_dns == true
 
 - name: create zone files
   template:

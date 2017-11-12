@@ -5,10 +5,12 @@ options {
   recursion no;
 };
 
+{% if caching_dns is yes %}
 zone "." {
 	type hint;
 	file "/etc/bind/named.root";
 };
+{% endif %}
 
 {% for zone in zones %}
 zone "{{ zone.name }}" {
