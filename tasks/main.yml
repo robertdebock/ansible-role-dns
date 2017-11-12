@@ -12,15 +12,23 @@
   with_items:
     - "{{ packages }}"
 
-- name: Clean all zones
+- name: create directories
   file:
-    state: absent
-    path: "{{ zonesdir }}/"
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ zonesdir }}"
+    - "{{ confdir }}"
 
-- name: Clean all configuration
+- name: clean all zones
   file:
+    path: "{{ zonesdir }}/"
     state: absent
+
+- name: clean all configuration
+  file:
     path: "{{ confdir }}/"
+    state: absent
 
 - name: get most recent version of the hints/root file
   get_url:
