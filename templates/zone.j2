@@ -8,13 +8,13 @@ $TTL {{ item.ttl|default('86400') }}
 			{{ item.ttl|default('604800') }} ) ; minimum TTL
 
 {% if item.ns is defined %}
-{% for record in item.ns.name %}
-  IN NS {{ record }}
+{% for record in item.ns %}
+  IN NS {{ record.name }}
 {% endfor %}
 {% endif %}
 
 {% if item.mx is defined %}
-{% for record in item.mx.name %}
+{% for record in item.mx %}
   IN MX {{ record.priority|default('10') }} {{ record.name }}
 {% endfor %}
 {% endif %}
