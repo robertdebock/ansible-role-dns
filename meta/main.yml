@@ -25,11 +25,18 @@ galaxy_info:
     - artful
 
   galaxy_tags:
-    - alpine
-    - debian
-    - fedora
-    - rhel
-    - ubuntu
+    - bind
+    - dns
+    - networking
+    - system
+    - resolving
+    - named
+    - Alpine
+    - CentOS
+    - Debian
+    - Fedora
+    - RHEL
+    - Ubuntu
 
 dependencies:
   - robertdebock.bootstrap

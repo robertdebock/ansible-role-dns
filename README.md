@@ -6,7 +6,7 @@ Ability to configure DNS and records.
 Requirements
 ------------
 
-Access to a repository that provides the package for bind.
+Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on.
 Access to internet to download ftp://ftp.internic.net/domain/named.root.
 
 Role Variables
@@ -45,7 +45,7 @@ zones:
 - zones.name.records is optional and contains a list of records.
 - zones.name.records.name is manadory when adding a host.
 - zones.name.records.name.type is optional, defaults to "A", other values may be: TXT or CNAME.
- 
+
 if you set "caching_dns" (to any value) your dns server will act as a caching nameserver.
 
 Dependencies
@@ -58,8 +58,18 @@ Example Playbook
 
 ```
 - hosts: servers
+
   roles:
-    - robertdebock.dns
+    - role: robertdebock.dns
+      zones:
+     - name: example.com
+       ns:
+       -  name: ns1.example.com.
+       records:
+       - name: www
+         value: 192.168.1.1
+       - name: ns1
+         value: 192.167.1.1
 ```
 
 License
