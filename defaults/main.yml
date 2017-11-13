@@ -43,8 +43,8 @@ zones:
 
   - name: example.com
     ns:
-    - dns1.example.com.
-    - dns2.example.com.
+    - name: dns1.example.com.
+    - name: dns2.example.com.
     mx:
     - name: mail1.example.com
       priority: 10
