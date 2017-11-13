@@ -5,7 +5,7 @@ options {
   recursion no;
 };
 
-include "/etc/rndc.key";
+include "{{ confdir }}/rndc.conf";
 
 controls {
   inet 127.0.0.1 port 953
