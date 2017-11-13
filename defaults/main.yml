@@ -20,6 +20,7 @@ zones:
       value: ::1
 
   - name: 127.in-addr.arpa
+    ttl: 604800
     records:
     - name: "@"
       type: NS
@@ -41,6 +42,22 @@ zones:
       value: localhost
 
   - name: example.com
+    ns:
+    - dns1.example.com.
+    - dns2.example.com.
+    mx:
+    - mail1.example.com.
+      priority: 10
+    - mail2.example.com
+      priority: 20
     records:
     - name: www
+      value: 127.0.0.1
+    - name: dns1
+      value: 127.0.0.1
+    - name: dns2
+      value: 127.0.0.1
+    - name: mail1
+      value: 127.0.0.1
+    - name: mail2
       value: 127.0.0.1
