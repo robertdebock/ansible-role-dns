@@ -16,5 +16,5 @@ $TTL 86400
 	IN	MX	20	mail2.example.com.
 
 {% for record in item.records %}
-{{ record.name }} IN {{ record.type }} {{ record.value }}
+{{ record.name }}	IN	{{ record.type }}	{{ record.value }}
 {% endfor %}

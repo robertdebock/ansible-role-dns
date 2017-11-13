@@ -1,21 +1,27 @@
 options {
   listen-on port 53 { 0.0.0.0; };
   directory	"{{ zonesdir }}";
-	allow-query { any; };
+  allow-query { any; };
   recursion no;
+};
+
+include "/etc/rndc.key";
+
+controls {
+  inet 127.0.0.1 port 953
+  allow { 127.0.0.1; } keys { "rndc-key"; };
 };
 
 {% if caching_dns is defined %}
 zone "." {
-	type hint;
-	file "/etc/bind/named.root";
+  type hint;
+  file "/etc/bind/named.root";
 };
 {% endif %}
 
 {% for zone in zones %}
 zone "{{ zone.name }}" {
   type master;
-  notify no;
   file "{{ zonesdir }}/{{ zone.name }}.conf";
 };
 {% endfor %}
