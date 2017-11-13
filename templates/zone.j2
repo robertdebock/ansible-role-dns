@@ -1,11 +1,11 @@
 $ORIGIN {{ item.name }}.
 $TTL {{ item.ttl|default('86400') }}
 @	IN	SOA	{{ item.soa|default('localhost') }}.	hostmaster.{{ item.name }}. (
-			{{ item.serial|default({{ ansible_date_time.epoch }}) }} ; serial
-			{{ item.refresh|default('21600') }} ; refresh
-			{{ item.retry|default('3600') }} ; retry
-			{{ item.expire|default('604800') }} ; expire
-			{{ item.ttl|default('86400') }} ) ; minimum TTL
+			1 ; serial
+			2 ; refresh
+			3 ; retry
+			4 ; expire
+			5 ) ; minimum TTL
 
 	IN	NS	dns1.example.com.
 	IN	NS	dns2.example.com.
