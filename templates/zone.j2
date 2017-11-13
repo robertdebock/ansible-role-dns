@@ -2,7 +2,7 @@ $ORIGIN {{ item.name }}.
 $TTL {{ item.ttl|default('86400') }}
 @	IN	SOA	{{ item.soa|default('localhost') }}.	hostmaster.{{ item.name }}. (
 			{{ item.serial|default('10') }} ; serial
-			{{ item.refresh|defauklt('604800') }} ; refresh
+			{{ item.refresh|default('604800') }} ; refresh
 			{{ item.retry|default('86400') }} ; retry
 			{{ item.expire|default('2419200') }} ; expire
 			{{ item.ttl|default('604800') }} ) ; minimum TTL
