@@ -21,7 +21,7 @@
     - "{{ confdir }}"
 
 - name: configure rndc key and configuration
-  shell: rndc-confgen > "{{ confdir }}"/rndc.conf
+  shell: rndc-confgen -a > "{{ confdir }}"/rndc.key
 
 - name: get most recent version of the hints/root file
   get_url:

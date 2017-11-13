@@ -3,6 +3,9 @@ options {
   directory	"{{ zonesdir }}";
   allow-query { any; };
   recursion no;
+	default-key "rndc-key";
+	default-server 127.0.0.1;
+	default-port 953;
 };
 
 include "{{ confdir }}/rndc.conf";
