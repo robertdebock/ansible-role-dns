@@ -24,31 +24,31 @@ zones:
     records:
     - name: "@"
       type: NS
-      value: localhost
+      value: localhost.
     - name: 1.0.0
       type: PTR
-      value: localhost
+      value: localhost.
 
   - name: 0.in-addr.arpa
     records:
     - name: "@"
       type: NS
-      value: localhost
+      value: localhost.
 
   - name: 255.in-addr.arpa
     records:
     - name: "@"
       type: NS
-      value: localhost
+      value: localhost.
 
   - name: example.com
     ns:
     - name: dns1.example.com.
     - name: dns2.example.com.
     mx:
-    - name: mail1.example.com
+    - name: mail1.example.com.
       priority: 10
-    - name: mail2.example.com
+    - name: mail2.example.com.
       priority: 20
     records:
     - name: www
