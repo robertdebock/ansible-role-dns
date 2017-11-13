@@ -4,7 +4,15 @@ caching_dns: yes
 zones:
   - name: localhost
     soa: localhost
+    serial: 1
+    refresh: 3600
+    rety: 60
+    expire: 7200
+    ttl: 14400
     records:
+    - name: "@"
+      type: NS
+      value: localhost.
     - name: "@"
       type: A
       value: 127.0.0.1
