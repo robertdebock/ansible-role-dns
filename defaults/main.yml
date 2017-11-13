@@ -42,7 +42,7 @@ zones:
       value: localhost.
 
   - name: example.com
-    ttl: 13
+    ttl: 604800
     ns:
     - name: dns1.example.com.
     - name: dns2.example.com.
