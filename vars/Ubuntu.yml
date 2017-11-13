@@ -4,3 +4,4 @@ packages:
 services:
   - bind9
 confdir: /etc/bind
+zonesdir: /var/named
