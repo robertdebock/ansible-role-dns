@@ -4,4 +4,9 @@
   command: rndc reload
 
 - name: reload configuration
-  command: rndc reconfig
+  command: named-checkconf -zj
+  notify:
+    really reload configuration
+
+- name: really reload configuration
+  command: rndc reload

@@ -1,8 +1,8 @@
 options {
-  directory	"{{ zonesdir }}";
+  directory "{{ zonesdir }}";
   dnssec-validation auto;
   auth-nxdomain no;
-  listen-on { any };
+  listen-on { any; };
   listen-on-v6 { any; };
   allow-query { any; };
 };
