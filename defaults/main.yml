@@ -4,11 +4,11 @@ caching_dns: yes
 zones:
   - name: localhost
     soa: localhost
-    serial: 6
-    refresh: 7
-    rety: 8
-    expire: 9
-    ttl: 10
+    serial: 1
+    refresh: 604800
+    rety: 86400
+    expire: 2419200
+    ttl: 604800
     records:
     - name: "@"
       type: NS
@@ -53,6 +53,7 @@ zones:
       priority: 20
     records:
     - name: www
+      ttl: 60
       value: 127.0.0.1
     - name: dns1
       value: 127.0.0.1
