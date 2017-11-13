@@ -3,7 +3,7 @@
   remote_user: root
 
   roles:
-    - ansible-role-dns
+    - dns
 
   tasks:
     - name: configure system to resolve to localhost
