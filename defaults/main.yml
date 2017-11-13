@@ -46,9 +46,9 @@ zones:
     - dns1.example.com.
     - dns2.example.com.
     mx:
-    - mail1.example.com.
+    - name: mail1.example.com
       priority: 10
-    - mail2.example.com
+    - name: mail2.example.com
       priority: 20
     records:
     - name: www
