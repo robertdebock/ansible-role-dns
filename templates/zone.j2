@@ -7,14 +7,14 @@ $TTL {{ item.ttl|default('86400') }}
 			{{ item.expire|default('2419200') }} ; expire
 			{{ item.ttl|default('604800') }} ) ; minimum TTL
 
-{% if item.name.ns is defined %}
-{% for record in item.name.ns.name %}
+{% if item.ns is defined %}
+{% for record in item.ns.name %}
   IN NS {{ record }}
 {% endfor %}
 {% endif %}
 
-{% if item.name.mx is defined %}
-{% for record in item.name.mx.name %}
+{% if item.mx is defined %}
+{% for record in item.mx.name %}
   IN MX {{ record.priority|default('10') }} {{ record.name }}
 {% endfor %}
 {% endif %}
