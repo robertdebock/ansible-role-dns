@@ -1,11 +1,11 @@
 $ORIGIN {{ item.name }}.
-$TTL {{ item.ttl|default(86400) }}
-@	IN	SOA	{{ item.soa|default(localhost) }}.	hostmaster.{{ item.name }}. (
+$TTL {{ item.ttl|default('86400') }}
+@	IN	SOA	{{ item.soa|default('localhost') }}.	hostmaster.{{ item.name }}. (
 			{{ item.serial|default({{ ansible_date_time.epoch }}) }} ; serial
-			{{ item.refresh|default(21600) }} ; refresh
-			{{ item.retry|default(3600) }} ; retry
-			{{ item.expire|default(604800) }} ; expire
-			{{ item.ttl|default(86400) }} ) ; minimum TTL
+			{{ item.refresh|default('21600') }} ; refresh
+			{{ item.retry|default('3600') }} ; retry
+			{{ item.expire|default('604800') }} ; expire
+			{{ item.ttl|default('86400') }} ) ; minimum TTL
 
 	IN	NS	dns1.example.com.
 	IN	NS	dns2.example.com.
@@ -14,5 +14,5 @@ $TTL {{ item.ttl|default(86400) }}
 	IN	MX	20	mail2.example.com.
 
 {% for record in item.records %}
-{{ record.name }}	IN	{{ record.type }}	{{ record.value }}
+{{ record.name }}	IN	{{ record.type|default('A') }}	{{ record.value }}
 {% endfor %}

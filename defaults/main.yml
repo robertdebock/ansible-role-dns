@@ -14,7 +14,6 @@ zones:
       type: NS
       value: localhost.
     - name: "@"
-      type: A
       value: 127.0.0.1
     - name: "@"
       type: AAAA
@@ -44,5 +43,4 @@ zones:
   - name: example.com
     records:
     - name: www
-      type: A
       value: 127.0.0.1
