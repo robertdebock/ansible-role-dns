@@ -20,5 +20,5 @@ $TTL {{ item.ttl|default('86400') }}
 {% endfor %}
 {% endif %}
 {% for record in item.records %}
-{{ record.name }}	{{ record.ttl|default(omit) }} IN	{{ record.type|default('A') }}	{{ record.value }}
+{{ record.name }} IN	{{ record.type|default('A') }}	{{ record.value }}
 {% endfor %}

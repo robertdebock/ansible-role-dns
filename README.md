@@ -45,7 +45,6 @@ zones:
 - zones.name.records is optional and contains a list of records.
 - zones.name.records.name is manadory when adding a host.
 - zones.name.records.name.type is optional, defaults to "A", other values may be: TXT or CNAME.
-- zones.name.records.name.ttl is optional, defaults to zones.name.ttl, which defaults to 86400.
  
 if you set "caching_dns" (to any value) your dns server will act as a caching nameserver.
 
