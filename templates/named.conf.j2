@@ -2,6 +2,7 @@ options {
   directory	"{{ zonesdir }}";
   dnssec-validation auto;
   auth-nxdomain no;
+  listen-on { any };
   listen-on-v6 { any; };
   allow-query { any; };
 };
@@ -9,7 +10,7 @@ options {
 {% if caching_dns is defined %}
 zone "." {
   type hint;
-  file "/etc/bind/named.root";
+  file "{{ zonesdir }}/named.root";
 };
 {% endif %}
 

@@ -27,7 +27,7 @@
   when:
     - caching_dns == true
   notify:
-    reload configuration
+    reload zones
 
 - name: create zone files
   template:
