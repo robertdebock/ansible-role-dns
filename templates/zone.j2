@@ -1,6 +1,6 @@
 $ORIGIN {{ item.name }}.
 $TTL {{ item.ttl | default(86400) }}
-@	IN	SOA	{{ item.soa }}.	hostmaster.{{ item.name }}. (
+@	IN	SOA	{{ item.soa | default(localhost) }}.	hostmaster.{{ item.name }}. (
 			{{ item.serial | default({{ansible_date_time.epoch}} )}} ; serial
 			{{ item.refresh | default(21600) }} ; refresh
 			{{ item.retry | default(3600) }} ; retry
