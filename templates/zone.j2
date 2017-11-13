@@ -1,11 +1,11 @@
 $ORIGIN {{ item.name }}.
 $TTL {{ item.ttl|default('86400') }}
 @	IN	SOA	{{ item.soa|default('localhost') }}.	hostmaster.{{ item.name }}. (
-			1 ; serial
-			2 ; refresh
-			3 ; retry
-			4 ; expire
-			5 ) ; minimum TTL
+			{{ item.serial|default('10') }} ; serial
+			{{ item.refresh|defauklt('604800') }} ; refresh
+			{{ item.retry|default('86400') }} ; retry
+			{{ item.expire|default('2419200') }} ; expire
+			{{ item.ttl|default('604800') }} ) ; minimum TTL
 
 	IN	NS	dns1.example.com.
 	IN	NS	dns2.example.com.
