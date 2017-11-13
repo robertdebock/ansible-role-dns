@@ -9,13 +9,13 @@ $TTL {{ item.ttl|default('86400') }}
 
 {% if item.name.ns is defined %}
 {% for record in item.name.ns %}
-  IN NS {{ record }}
+  IN NS {{ record.name }}
 {% endfor %}
 {% endif %}
 
 {% if item.name.mx.name is defined %}
-{% for record in item.name.mx.name %}
-  IN MX {{ record.priority|default('10') }} {{ record }}
+{% for record in item.name.mx %}
+  IN MX {{ record.priority|default('10') }} {{ record.name }}
 {% endfor %}
 {% endif %}
 
