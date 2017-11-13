@@ -1,6 +1,6 @@
 $ORIGIN {{ item.name }}.
-$TTL 86400
-@	IN	SOA	dns1.{{ item.name }}.	hostmaster.{{ item.name }}. (
+$TTL {{ item.ttl | default(86400) }}
+@	IN	SOA	{{ item.soa }}.	hostmaster.{{ item.name }}. (
 			2001062501 ; serial
 			21600      ; refresh after 6 hours
 			3600       ; retry after 1 hour

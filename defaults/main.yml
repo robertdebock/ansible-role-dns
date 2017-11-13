@@ -3,6 +3,7 @@
 caching_dns: yes
 zones:
   - name: localhost
+    soa: localhost
     records:
     - name: "@"
       type: A
