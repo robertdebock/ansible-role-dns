@@ -8,6 +8,8 @@ env:
 
 install:
   - pip install ansible
+  - role=$(basename $(pwd) | sed 's/ansible-role-//g')
+  - ln -s ${ANSIBLE_ROLES_PATH}/$(basename $(pwd)) ${role}
 
 script:
   - test -f requirements.yml && ansible-galaxy install --ignore-certs --role-file requirements.yml || echo "No requirements.yml found."
