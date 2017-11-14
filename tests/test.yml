@@ -10,4 +10,4 @@
       command: echo "nameserver 127.0.0.1" > /etc/resolv.conf
 
     - name: lookup www.example.com
-      command: genent www.example.com
+      command: getent www.example.com
