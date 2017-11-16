@@ -1,6 +1,6 @@
 ---
 packages:
-  - bind9
+- bind9
 services:
-  - bind9
+- bind9
 confdir: /etc/bind
