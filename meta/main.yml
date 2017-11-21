@@ -7,22 +7,23 @@ galaxy_info:
   platforms:
   - name: Alpine
     versions:
-    - all
+      - all
   - name: Debian
     versions:
-    - stretch
+      - jessie
+      - buster
   - name: EL
     versions:
-    - 6
-    - 7
+      - 6
+      - 7
   - name: Fedora
     versions:
-    - 25
-    - 26
+      - 26
+      - 27
   - name: Ubuntu
     versions:
-    - xenial
-    - artful
+      - artful
+      - zesty
 
   galaxy_tags:
     - bind
