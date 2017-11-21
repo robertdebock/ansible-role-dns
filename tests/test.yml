@@ -3,4 +3,4 @@
   remote_user: root
 
   roles:
-    - dns
+    - ansible-role-dns

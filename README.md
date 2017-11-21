@@ -1,4 +1,4 @@
-dns
+ansible-role-dns
 =========
 
 Ability to configure DNS and records.
@@ -51,7 +51,7 @@ if you set "caching_dns" (to any value) your dns server will act as a caching na
 Dependencies
 ------------
 
-- robertdebock.bootstrap
+- robertdebock.ansible-role-bootstrap
 
 Example Playbook
 ----------------
@@ -61,7 +61,7 @@ Example Playbook
 - hosts: servers
 
   roles:
-    - role: robertdebock.dns
+    - role: robertdebock.ansible-role-dns
       zones:
      - name: example.com
        ns:

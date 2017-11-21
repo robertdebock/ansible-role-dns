@@ -1,20 +1,24 @@
 ---
-language: python
 sudo: required
-service: docker
+language: python
+services: docker
 
 env:
-  - ANSIBLE_ROLES_PATH: ../
+  - ansible_version: 2.2.0
+  - ansible_version: 2.3.0
+  - ansible_version: 2.4.0
+
+cache:
+  - pip
 
 install:
-  - pip install ansible
-  - role=$(basename $(pwd) | sed 's/ansible-role-//g')
-  - ln -s ${ANSIBLE_ROLES_PATH}/$(basename $(pwd)) ${role}
+  - pip install --upgrade pip
+  - pip install ansible==${ansible_version}
+  - pip install molecule
+  - pip install docker-py
 
 script:
-  - test -f requirements.yml && ansible-galaxy install --ignore-certs --role-file requirements.yml || echo "No requirements.yml found."
-  - ansible-playbook --inventory tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook --inventory tests/inventory tests/test.yml --connection=local --become
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
