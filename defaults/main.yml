@@ -10,55 +10,55 @@ zones:
     expire: 2419200
     ttl: 604800
     records:
-    - name: "@"
-      type: NS
-      value: localhost.
-    - name: "@"
-      value: 127.0.0.1
-    - name: "@"
-      type: AAAA
-      value: ::1
+      - name: "@"
+        type: NS
+        value: localhost.
+      - name: "@"
+        value: 127.0.0.1
+      - name: "@"
+        type: AAAA
+        value: ::1
 
   - name: 127.in-addr.arpa
     ttl: 604800
     records:
-    - name: "@"
-      type: NS
-      value: localhost.
-    - name: 1.0.0
-      type: PTR
-      value: localhost.
+      - name: "@"
+        type: NS
+        value: localhost.
+      - name: 1.0.0
+        type: PTR
+        value: localhost.
 
   - name: 0.in-addr.arpa
     records:
-    - name: "@"
-      type: NS
-      value: localhost.
+      - name: "@"
+        type: NS
+        value: localhost.
 
   - name: 255.in-addr.arpa
     records:
-    - name: "@"
-      type: NS
-      value: localhost.
+      - name: "@"
+        type: NS
+        value: localhost.
 
   - name: example.com
     ttl: 604800
     ns:
-    - name: dns1.example.com.
-    - name: dns2.example.com.
+      - name: dns1.example.com.
+      - name: dns2.example.com.
     mx:
-    - name: mail1.example.com.
-      priority: 10
-    - name: mail2.example.com.
-      priority: 20
+      - name: mail1.example.com.
+        priority: 10
+      - name: mail2.example.com.
+        priority: 20
     records:
-    - name: www
-      value: 127.0.0.1
-    - name: dns1
-      value: 127.0.0.1
-    - name: dns2
-      value: 127.0.0.1
-    - name: mail1
-      value: 127.0.0.1
-    - name: mail2
-      value: 127.0.0.1
+      - name: www
+        value: 127.0.0.1
+      - name: dns1
+        value: 127.0.0.1
+      - name: dns2
+        value: 127.0.0.1
+      - name: mail1
+        value: 127.0.0.1
+      - name: mail2
+        value: 127.0.0.1
