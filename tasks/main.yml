@@ -23,7 +23,7 @@
     - "{{ confdir }}"
 
 - name: generate rndc key
-  shell: rndc-confgen -a
+  command: rndc-confgen -a
   args:
     creates: "{{ confdir }}/rndc.key"
 
