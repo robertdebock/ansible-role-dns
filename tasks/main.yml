@@ -22,6 +22,11 @@
     - "{{ zonesdir }}"
     - "{{ confdir }}"
 
+- name: generate rndc key and confdir
+  shell: rndc-confgen > "{{ confdir }}"/rndc.conf
+  args:
+    creates: "{{ confdir }}"/rndc.conf
+
 - name: get most recent version of the hints/root file
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
