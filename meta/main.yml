@@ -1,29 +1,30 @@
+---
 galaxy_info:
   author: Robert de Bock
   description: Provides dns and zone configuration.
   license: Apache License, Version 2.0
-  min_ansible_version: 2.0
+  min_ansible_version: 2.2
 
   platforms:
-  - name: Alpine
-    versions:
-      - all
-  - name: Debian
-    versions:
-      - jessie
-      - buster
-  - name: EL
-    versions:
-      - 6
-      - 7
-  - name: Fedora
-    versions:
-      - 26
-      - 27
-  - name: Ubuntu
-    versions:
-      - artful
-      - zesty
+    - name: Alpine
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - jessie
+        - buster
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Fedora
+      versions:
+        - 26
+        - 27
+    - name: Ubuntu
+      versions:
+        - artful
+        - zesty
 
   galaxy_tags:
     - bind
