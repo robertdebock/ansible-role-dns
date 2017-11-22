@@ -22,10 +22,10 @@
     - "{{ zonesdir }}"
     - "{{ confdir }}"
 
-- name: generate rndc key and confdir
-  shell: rndc-confgen > "{{ confdir }}"/rndc.conf
+- name: generate rndc key
+  shell: rndc-confgen -a
   args:
-    creates: "{{ confdir }}"/rndc.conf
+    creates: "{{ confdir }}/rndc.key"
 
 - name: get most recent version of the hints/root file
   get_url:

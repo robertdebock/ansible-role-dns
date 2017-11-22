@@ -21,7 +21,7 @@ zone "{{ zone.name }}" {
 };
 {% endfor %}
 
-include "{{ confdir }}/rndc.conf";
+include "{{ confdir }}/rndc.key";
 
 controls {
   inet 127.0.0.1 port 953

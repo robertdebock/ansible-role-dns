@@ -3,4 +3,4 @@ packages:
   - bind
 services:
   - bind
-confdir: /etc/bind
+confdir: /etc

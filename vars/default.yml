@@ -1,6 +1,1 @@
 ---
-packages:
-  - bind
-services:
-  - bind
-confdir: /etc/named
