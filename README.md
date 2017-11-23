@@ -1,6 +1,8 @@
 ansible-role-dns
 =========
 
+[![Build Status](https://travis-ci.org/robertdebock/ansible-role-dns.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-dns)
+
 Ability to configure DNS and records.
 
 Requirements
