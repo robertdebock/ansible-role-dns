@@ -63,25 +63,25 @@ Example Playbook
 - hosts: servers
 
   roles:
-    - role: robertdebock.ansible-role-dns
+    - role: ansible-role-dns
       zones:
-     - name: example.com
-       ns:
-       - name: ns1.example.com.
-       mx:
-       - name: mail1.example.com.
-         priority: 10
-       - name: mail2.example.com.
-         priority: 20
-       records:
-       - name: www
-         value: 192.168.1.1
-       - name: ns1
-         value: 192.167.1.1
-       - name: mail1
-         value: 192.168.1.1
-       - name: mail2
-         value: 192.168.1.2
+        - name: example.com
+        ns:
+          - name: ns1.example.com.
+        mx:
+          - name: mail1.example.com.
+        priority: 10
+          - name: mail2.example.com.
+        priority: 20
+        records:
+          - name: www
+        value: 192.168.1.1
+          - name: ns1
+        value: 192.167.1.1
+          - name: mail1
+        value: 192.168.1.1
+          - name: mail2
+        value: 192.168.1.2
 ```
 
 License
