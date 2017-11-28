@@ -63,7 +63,7 @@ Example Playbook
 - hosts: servers
 
   roles:
-    - role: ansible-role-dns
+    - role: robertdebock.ansible-role-dns
       zones:
         - name: example.com
         ns:
@@ -83,6 +83,7 @@ Example Playbook
           - name: mail2
         value: 192.168.1.2
 ```
+Install this role using `galaxy install robertdebock.ansible-role-dns`.
 
 License
 -------
