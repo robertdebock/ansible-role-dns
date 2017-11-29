@@ -3,4 +3,4 @@
   hosts: all
 
   roles:
-    - role: dns
+    - role: ansible-role-dns
