@@ -1,5 +1,5 @@
 ---
-# tasks file for ansible-role-dns
+# tasks file for dns
 - name: include distribution specific variables
   include_vars: "{{ item }}"
   with_first_found:

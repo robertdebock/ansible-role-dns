@@ -41,4 +41,4 @@ galaxy_info:
     - Ubuntu
 
 dependencies:
-  - robertdebock.ansible-role-bootstrap
+  - robertdebock.bootstrap

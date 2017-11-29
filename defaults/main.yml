@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-dns
+# defaults file for dns
 caching_dns: yes
 zones:
   - name: localhost

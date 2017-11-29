@@ -1,7 +1,7 @@
-ansible-role-dns
+dns
 =========
 
-[![Build Status](https://travis-ci.org/robertdebock/ansible-role-dns.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-dns)
+[![Build Status](https://travis-ci.org/robertdebock.ansible-role-dns.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-dns)
 
 Ability to configure DNS and records.
 
@@ -53,7 +53,7 @@ if you set "caching_dns" (to any value) your dns server will act as a caching na
 Dependencies
 ------------
 
-- robertdebock.ansible-role-bootstrap
+- robertdebock.bootstrap
 
 Example Playbook
 ----------------
@@ -63,7 +63,7 @@ Example Playbook
 - hosts: servers
 
   roles:
-    - role: robertdebock.ansible-role-dns
+    - role: robertdebock.dns
       zones:
         - name: example.com
         ns:
@@ -83,7 +83,7 @@ Example Playbook
           - name: mail2
         value: 192.168.1.2
 ```
-Install this role using `galaxy install robertdebock.ansible-role-dns`.
+Install this role using `galaxy install robertdebock.dns`.
 
 License
 -------
