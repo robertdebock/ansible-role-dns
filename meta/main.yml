@@ -21,6 +21,10 @@ galaxy_info:
       versions:
         - 26
         - 27
+    - name: opensuse
+      versions:
+        - 42.2
+        - 42.3
     - name: Ubuntu
       versions:
         - artful
