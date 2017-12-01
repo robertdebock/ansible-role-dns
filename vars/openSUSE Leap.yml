@@ -1,3 +1,6 @@
 ---
 packages:
-  - ca-certificates
+  - bind
+services:
+  - named
+confdir: /etc
