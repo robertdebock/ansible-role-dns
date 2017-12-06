@@ -32,7 +32,7 @@
     url: ftp://ftp.internic.net/domain/named.root
     dest: "{{ dns_zonesdir }}/named.root"
   when:
-    - caching_dns == true
+    - dns_caching_dns == true
   notify:
     reload zones
 
