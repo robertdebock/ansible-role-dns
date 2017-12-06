@@ -16,7 +16,7 @@ Role Variables
 
 Have a look at defaults/main.yml:
 ```
-zones:
+dns_zones:
   - name: example.com
     ttl: 3600
     ns:
@@ -48,7 +48,7 @@ zones:
 - zones.name.records.name is manadory when adding a host.
 - zones.name.records.name.type is optional, defaults to "A", other values may be: TXT or CNAME.
 
-if you set "caching_dns" (to any value) your dns server will act as a caching nameserver.
+if you set "dns_caching_dns" (to any value) your dns server will act as a caching nameserver.
 
 Dependencies
 ------------
@@ -64,7 +64,7 @@ Example Playbook
 
   roles:
     - role: robertdebock.dns
-      zones:
+      dns_zones:
         - name: example.com
         ns:
           - name: ns1.example.com.

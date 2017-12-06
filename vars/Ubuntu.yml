@@ -1,7 +1,7 @@
 ---
-packages:
+dns_packages:
   - bind9
-services:
+dns_services:
   - bind9
-confdir: /etc/bind
-zonesdir: /etc/bind
+dns_onfdir: /etc/bind
+dns_zonesdir: /etc/bind

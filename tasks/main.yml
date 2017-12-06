@@ -12,25 +12,25 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - "{{ packages }}"
+    - "{{ dns_packages }}"
 
 - name: create directories
   file:
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ zonesdir }}"
-    - "{{ confdir }}"
+    - "{{ dns_zonesdir }}"
+    - "{{ dns_confdir }}"
 
 - name: generate rndc key
   command: rndc-confgen -a
   args:
-    creates: "{{ confdir }}/rndc.key"
+    creates: "{{ dns_confdir }}/rndc.key"
 
 - name: get most recent version of the hints/root file
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
-    dest: "{{ zonesdir }}/named.root"
+    dest: "{{ dns_zonesdir }}/named.root"
   when:
     - caching_dns == true
   notify:
@@ -39,16 +39,16 @@
 - name: create zone files
   template:
     src: templates/zone.j2
-    dest: "{{ zonesdir }}/{{ item.name }}.conf"
+    dest: "{{ dns_zonesdir }}/{{ item.name }}.conf"
   with_items:
-    - "{{ zones }}"
+    - "{{ dns_zones }}"
   notify:
     reload zones
 
 - name: add zones to configuration
   template:
     src: templates/named.conf.j2
-    dest: "{{ confdir }}/named.conf"
+    dest: "{{ dns_confdir }}/named.conf"
   notify:
     reload configuration
 
@@ -58,6 +58,6 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ services }}"
+    - "{{ dns_services }}"
   when:
     - ansible_virtualization_type != "docker"

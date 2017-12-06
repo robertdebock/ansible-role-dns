@@ -1,7 +1,7 @@
 ---
 # defaults file for dns
-caching_dns: yes
-zones:
+dns_caching_dns: yes
+dns_zones:
   - name: localhost
     soa: localhost
     serial: 1

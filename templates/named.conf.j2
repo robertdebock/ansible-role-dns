@@ -1,5 +1,5 @@
 options {
-  directory "{{ zonesdir }}";
+  directory "{{ dns_zonesdir }}";
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on { any; };
@@ -17,11 +17,11 @@ zone "." {
 {% for zone in zones %}
 zone "{{ zone.name }}" {
   type master;
-  file "{{ zonesdir }}/{{ zone.name }}.conf";
+  file "{{ dns_zonesdir }}/{{ dns_zone.name }}.conf";
 };
 {% endfor %}
 
-include "{{ confdir }}/rndc.key";
+include "{{ dns_confdir }}/rndc.key";
 
 controls {
   inet 127.0.0.1 port 953

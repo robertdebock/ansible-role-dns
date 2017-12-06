@@ -4,3 +4,4 @@ packages:
 services:
   - bind
 confdir: /etc/bind
+dns_zonesdir: /var/named
