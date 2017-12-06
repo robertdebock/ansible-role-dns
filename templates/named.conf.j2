@@ -17,7 +17,7 @@ zone "." {
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
   type master;
-  file "{{ dns_zonesdir }}/{{ dns_zone.name }}.conf";
+  file "{{ dns_zonesdir }}/{{ zone.name }}.conf";
 };
 {% endfor %}
 
