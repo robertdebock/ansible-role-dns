@@ -1,7 +1,3 @@
 ---
-dns_packages:
-  - bind9
-dns_services:
-  - bind9
 dns_confdir: /etc/bind
 dns_zonesdir: /var/named

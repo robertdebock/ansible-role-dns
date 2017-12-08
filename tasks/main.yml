@@ -12,7 +12,9 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - "{{ dns_packages }}"
+    - "{{ dns_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(dns_packages[ansible_distribution]
+      | default(dns_packages['default'] )) }}"
 
 - name: create directories
   file:
@@ -58,6 +60,8 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ dns_services }}"
+    - "{{ dns_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default(dns_services[ansible_distribution]
+          | default(dns_services['default'] )) }}"
   when:
     - ansible_virtualization_type != "docker"

@@ -1,7 +1,3 @@
 ---
-dns_packages:
-  - bind
-dns_services:
-  - named
 dns_confdir: /etc
 dns_zonesdir: /var/named
