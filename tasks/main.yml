@@ -1,12 +1,4 @@
 ---
-# tasks file for dns
-- name: include distribution specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "dns.{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
-    - "dns.{{ ansible_distribution }}.yml"
-    - "dns.default.yml"
-
 - name: install software
   package:
     name: "{{ item }}"
@@ -21,18 +13,24 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ dns_zonesdir }}"
-    - "{{ dns_confdir }}"
+    - "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}"
+    - "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}"
 
 - name: generate rndc key
-  command: rndc-confgen -a
+  command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
   args:
-    creates: "{{ dns_confdir }}/rndc.key"
+    creates: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
+
+- name: set permissions on rndc key file
+  file:
+    path: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
+    owner: "{{ dns_owner[ansible_distribution] | default(dns_owner['default'] ) }}"
+    group: "{{ dns_group[ansible_distribution] | default(dns_group['default'] ) }}"
 
 - name: get most recent version of the hints/root file
   get_url:
     url: ftp://ftp.internic.net/domain/named.root
-    dest: "{{ dns_zonesdir }}/named.root"
+    dest: "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/named.root"
   when:
     - dns_caching_dns == true
   notify:
@@ -41,7 +39,7 @@
 - name: create zone files
   template:
     src: templates/zone.j2
-    dest: "{{ dns_zonesdir }}/{{ item.name }}.conf"
+    dest: "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
   notify:
@@ -50,7 +48,7 @@
 - name: add zones to configuration
   template:
     src: templates/named.conf.j2
-    dest: "{{ dns_confdir }}/named.conf"
+    dest: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
   notify:
     reload configuration
 

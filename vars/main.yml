@@ -9,11 +9,37 @@ dns_packages:
     - bind9
 
 dns_services:
+  CentOS:
+    - named
   Debian:
     - bind9
   default:
     - bind
+  Fedora:
+    - named
   openSUSE Leap:
     - named
   Ubuntu:
     - bind9
+
+dns_confdir:
+  Alpine: /etc/bind
+  Debian: /etc/bind
+  default: /etc
+  openSUSE Leap: /var/lib/named/etc
+  Ubuntu: /etc/bind
+
+dns_zonesdir:
+  default: /var/named
+  openSUSE Leap: /var/lib/named/var/named
+  Ubuntu: /etc/bind
+
+dns_owner:
+  Debian: bind
+  default: named
+  Ubuntu: bind
+
+dns_group:
+  Debian: bind
+  default: named
+  Ubuntu: bind

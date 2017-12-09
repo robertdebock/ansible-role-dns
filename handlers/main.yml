@@ -7,7 +7,7 @@
 
 
 - name: reload configuration
-  command: named-checkconf -zj
+  command: named-checkconf -zj "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
   notify:
     really reload configuration
 

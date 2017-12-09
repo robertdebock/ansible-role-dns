@@ -1,5 +1,5 @@
 options {
-  directory "{{ dns_zonesdir }}";
+  directory "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}";
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on { any; };
@@ -7,21 +7,21 @@ options {
   allow-query { any; };
 };
 
-{% if caching_dns is defined %}
+{% if dns_caching_dns is defined %}
 zone "." {
   type hint;
-  file "{{ zonesdir }}/named.root";
+  file "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/named.root";
 };
 {% endif %}
 
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
   type master;
-  file "{{ dns_zonesdir }}/{{ zone.name }}.conf";
+  file "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/{{ zone.name }}.conf";
 };
 {% endfor %}
 
-include "{{ dns_confdir }}/rndc.key";
+include "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key";
 
 controls {
   inet 127.0.0.1 port 953

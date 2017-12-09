@@ -1,3 +1,0 @@
----
-dns_confdir: /etc
-dns_zonesdir: /var/named
