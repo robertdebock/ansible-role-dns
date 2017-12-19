@@ -5,4 +5,4 @@
   become: yes
 
   roles:
-    - role: ansible-roledns
+    - role: ansible-role-dns
