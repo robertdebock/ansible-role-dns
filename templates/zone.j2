@@ -1,3 +1,4 @@
+; {{ ansible_managed }}
 $ORIGIN {{ item.name }}.
 $TTL {{ item.ttl|default('86400') }}
 @	IN	SOA	{{ item.soa|default('localhost') }}.	hostmaster.{{ item.name }}. (

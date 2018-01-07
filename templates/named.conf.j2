@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 options {
   directory "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}";
   dnssec-validation auto;
