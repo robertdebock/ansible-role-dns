@@ -16,6 +16,15 @@
     - "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}"
     - "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}"
 
+- name: create group
+  group:
+    name: "{{ dns_group[ansible_distribution] | default(dns_group['default'] ) }}"
+
+- name: create user
+  user:
+    name: "{{ dns_owner[ansible_distribution] | default(dns_owner['default'] ) }}"
+    system: yes
+
 - name: generate rndc key
   command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
   args:
