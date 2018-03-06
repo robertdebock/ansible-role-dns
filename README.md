@@ -53,6 +53,8 @@ if you set "dns_caching_dns" (to any value) your dns server will act as a cachin
 Dependencies
 ------------
 
+You can use this role to ensure your system is prepared.
+
 - robertdebock.bootstrap
 
 Example Playbook
@@ -63,6 +65,7 @@ Example Playbook
 - hosts: servers
 
   roles:
+    - role: robertdebock.bootstrap
     - role: robertdebock.dns
       dns_zones:
         - name: example.com
