@@ -44,9 +44,9 @@
     - dns_caching_dns == true
   notify:
     reload zones
-  register: result
-  retries: 3
-  until: not result|succeeded
+  # register: result
+  # retries: 3
+  # until: not result|succeeded
 
 - name: create zone files
   template:
