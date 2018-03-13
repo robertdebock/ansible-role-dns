@@ -5,6 +5,10 @@ dns
 
 Ability to configure DNS and records.
 
+Context
+--------
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+
 Requirements
 ------------
 
