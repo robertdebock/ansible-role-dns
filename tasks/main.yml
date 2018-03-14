@@ -61,6 +61,7 @@
   template:
     src: templates/named.conf.j2
     dest: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
+    validate: named-checkconf -zj {{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf
   notify:
     reload configuration
 

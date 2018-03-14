@@ -5,13 +5,7 @@
   when:
     - ansible_virtualization_type != "docker"
 
-
 - name: reload configuration
-  command: named-checkconf -zj "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
-  notify:
-    really reload configuration
-
-- name: really reload configuration
   command: rndc reload
   when:
     - ansible_virtualization_type != "docker"
