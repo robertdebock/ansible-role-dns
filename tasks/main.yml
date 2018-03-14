@@ -44,9 +44,6 @@
     - dns_caching_dns == true
   notify:
     reload zones
-  # register: result
-  # retries: 3
-  # until: not result|succeeded
 
 - name: create zone files
   template:
@@ -61,7 +58,7 @@
   template:
     src: templates/named.conf.j2
     dest: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
-    validate: named-checkconf -zj {{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf
+    validate: named-checkconf -zj %s
   notify:
     reload configuration
 
