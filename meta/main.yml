@@ -12,7 +12,7 @@ galaxy_info:
     - name: ArchLinux
       version:
         - all
-    - name: CentOS
+    - name: EL
       version:
         - 6
         - 7
