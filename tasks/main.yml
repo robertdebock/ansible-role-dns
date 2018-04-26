@@ -53,6 +53,8 @@
     - "{{ dns_zones }}"
   notify:
     reload zones
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: add zones to configuration
   template:
