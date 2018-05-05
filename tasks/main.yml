@@ -47,7 +47,7 @@
 
 - name: create zone files
   template:
-    src: templates/zone.j2
+    src: zone.j2
     dest: "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
@@ -58,7 +58,7 @@
 
 - name: add zones to configuration
   template:
-    src: templates/named.conf.j2
+    src: named.conf.j2
     dest: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
