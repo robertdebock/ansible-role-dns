@@ -62,7 +62,7 @@ Dependencies
 
 You can use this role to ensure your system is prepared.
 
-- robertdebock.bootstrap
+- [robertdebock.bootstrap](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
 Compatibility
 -------------
