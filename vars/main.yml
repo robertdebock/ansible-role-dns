@@ -19,6 +19,8 @@ dns_services:
     - named
   openSUSE Leap:
     - named
+  openSUSE Tumbleweed:
+    - named
   Ubuntu:
     - bind9
 
@@ -27,11 +29,13 @@ dns_confdir:
   Debian: /etc/bind
   default: /etc
   openSUSE Leap: /var/lib/named/etc
+  openSUSE Tumbleweed: /var/lib/named/etc
   Ubuntu: /etc/bind
 
 dns_zonesdir:
   default: /var/named
   openSUSE Leap: /var/lib/named/var/named
+  openSUSE Tumbleweed: /var/lib/named/var/named
   Ubuntu: /etc/bind
 
 dns_owner:
