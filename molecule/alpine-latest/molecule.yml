@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: dns-debian-stretch
-    image: debian:stretch
+  - name: dns-alpine-latest
+    image: alpine:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: debian-stretch
+  name: alpine-latest
 verifier:
   name: goss
   lint:

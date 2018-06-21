@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: dns-centos-7
-    image: centos:7
+  - name: dns-ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: centos-7
+  name: ubuntu-latest
 verifier:
   name: goss
   lint:

@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: dns-fedora-28
-    image: fedora:28
+  - name: dns-debian-latest
+    image: debian:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-28
+  name: debian-latest
 verifier:
   name: goss
   lint:

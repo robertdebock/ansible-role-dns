@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: dns-fedora-27
-    image: fedora:27
+  - name: dns-opensuse-tumbleweed
+    image: opensuse:tumbleweed
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-27
+  name: opensuse-tumbleweed
 verifier:
   name: goss
   lint:

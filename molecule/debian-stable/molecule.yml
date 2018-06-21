@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: dns-opensuse-42.2
-    image: opensuse:42.2
+  - name: dns-debian-stable
+    image: debian:stable
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: opensuse-42.2
+  name: debian-stable
 verifier:
   name: goss
   lint:
