@@ -12,9 +12,9 @@
     state: directory
   with_items:
     - "{{ dns_configuration[ansible_distribution]['datadir']
-      | default(dns_configuration['default']['datadir'] ) }}'
+      | default(dns_configuration['default']['datadir'] ) }}"
     - "{{ dns_configuration[ansible_distribution]['confdir']
-      | default(dns_configuration['default']['confdir'] ) }}'
+      | default(dns_configuration['default']['confdir'] ) }}"
 
 - name: create group
   group:

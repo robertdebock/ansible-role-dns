@@ -10,7 +10,7 @@ dns_configuration:
     group: bind
     packages:
       - bind9
-    owner:  bind
+    owner: bind
     service: bind9
     datadir: /etc/bind
   default:
