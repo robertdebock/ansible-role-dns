@@ -2,44 +2,46 @@
 - name: install software
   package:
     name: "{{ item }}"
-    state: present
   with_items:
-    - "{{ dns_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(dns_packages[ansible_distribution]
-      | default(dns_packages['default'] )) }}"
+    - "{{ dns_configuration[ansible_distribution]['packages']
+      | default(dns_configuration['default']['packages'] ) }}"
 
 - name: create directories
   file:
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}"
-    - "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}"
+    - "{{ dns_configuration[ansible_distribution]['datadir']
+      | default(dns_configuration['default']['datadir'] ) }}'
+    - "{{ dns_configuration[ansible_distribution]['confdir']
+      | default(dns_configuration['default']['confdir'] ) }}'
 
 - name: create group
   group:
-    name: "{{ dns_group[ansible_distribution] | default(dns_group['default'] ) }}"
+    name: "{{ dns_configuration[ansible_distribution]['group']
+          | default(dns_configuration['default']['group'] ) }}"
 
 - name: create user
   user:
-    name: "{{ dns_owner[ansible_distribution] | default(dns_owner['default'] ) }}"
+    name: "{{ dns_configuration[ansible_distribution]['owner']
+          | default(dns_configuration['default']['owner'] ) }}"
     system: yes
 
 - name: generate rndc key
-  command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
+  command: rndc-confgen -a -c "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
   args:
-    creates: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
+    creates: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
 
 - name: set permissions on rndc key file
   file:
-    path: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/rndc.key"
-    owner: "{{ dns_owner[ansible_distribution] | default(dns_owner['default'] ) }}"
-    group: "{{ dns_group[ansible_distribution] | default(dns_group['default'] ) }}"
+    path: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
+    owner: "{{ dns_configuration[ansible_distribution]['owner'] | default(dns_configuration['default']['owner'] ) }}"
+    group: "{{ dns_configuration[ansible_distribution]['group'] | default(dns_configuration['default']['group'] ) }}"
 
 - name: get most recent version of the hints/root file
   get_url:
     url: https://www.internic.net/domain/named.root
-    dest: "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/named.root"
+    dest: "{{ dns_configuration[ansible_distribution]['datadir'] | default(dns_configuration['default']['datadir'] ) }}/named.root"
   when:
     - dns_caching_dns == true
   notify:
@@ -48,7 +50,7 @@
 - name: create zone files
   template:
     src: zone.j2
-    dest: "{{ dns_zonesdir[ansible_distribution] | default(dns_zonesdir['default'] ) }}/{{ item.name }}.conf"
+    dest: "{{ dns_configuration[ansible_distribution]['datadir'] | default(dns_configuration['default']['datadir'] ) }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
   notify:
@@ -59,7 +61,7 @@
 - name: add zones to configuration
   template:
     src: named.conf.j2
-    dest: "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default'] ) }}/named.conf"
+    dest: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
     reload configuration
@@ -70,8 +72,7 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ dns_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default(dns_services[ansible_distribution]
-          | default(dns_services['default'] )) }}"
+    - "{{ dns_configuration[ansible_distribution]['service']
+          | default(dns_configuration['default']['service'] ) }}"
   when:
     - ansible_virtualization_type != "docker"

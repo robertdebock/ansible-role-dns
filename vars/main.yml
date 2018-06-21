@@ -1,49 +1,41 @@
 ---
 # vars file for dns
-dns_packages:
-  Debian:
-    - bind9
-  default:
-    - bind
-  Ubuntu:
-    - bind9
-
-dns_services:
+dns_configuration:
+  Alpine:
+    confdir: /etc/bind
   CentOS:
-    - named
+    service: named
   Debian:
-    - bind9
+    confdir: /etc/bind
+    group: bind
+    packages:
+      - bind9
+    owner:  bind
+    service: bind9
+    datadir: /etc/bind
   default:
-    - bind
+    confdir: /etc
+    group: named
+    packages:
+      - bind
+    owner: named
+    service: bind
+    datadir: /var/named
   Fedora:
-    - named
+    service: named
   openSUSE Leap:
-    - named
+    confdir: /var/lib/named/etc
+    service: named
+    datadir: /var/lib/named/var/named
   openSUSE Tumbleweed:
-    - named
+    confdir: /var/lib/named/etc
+    service: named
+    datadir: /var/lib/named/var/named
   Ubuntu:
-    - bind9
-
-dns_confdir:
-  Alpine: /etc/bind
-  Debian: /etc/bind
-  default: /etc
-  openSUSE Leap: /var/lib/named/etc
-  openSUSE Tumbleweed: /var/lib/named/etc
-  Ubuntu: /etc/bind
-
-dns_zonesdir:
-  default: /var/named
-  openSUSE Leap: /var/lib/named/var/named
-  openSUSE Tumbleweed: /var/lib/named/var/named
-  Ubuntu: /etc/bind
-
-dns_owner:
-  Debian: bind
-  default: named
-  Ubuntu: bind
-
-dns_group:
-  Debian: bind
-  default: named
-  Ubuntu: bind
+    confdir: /etc/bind
+    group: bind
+    packages:
+      - bind9
+    owner: bind
+    service: bind9
+    datadir: /etc/bind
