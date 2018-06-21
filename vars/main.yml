@@ -3,6 +3,9 @@
 dns_configuration:
   Alpine:
     confdir: /etc/bind
+  Archlinux:
+    packages:
+      - bind
   CentOS:
     service: named
   Debian:
