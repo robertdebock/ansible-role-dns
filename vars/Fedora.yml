@@ -1,0 +1,3 @@
+---
+# vars file for dns
+dns_service: named

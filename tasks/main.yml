@@ -1,47 +1,53 @@
 ---
+# tasks file for dns
+- name: load default variables
+  include_vars:
+    file: default.yml
+
+- name: load os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - default.yml
+
 - name: install software
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ dns_configuration[ansible_distribution]['packages']
-      | default(dns_configuration['default']['packages'] ) }}"
+    - "{{ dns_packages }}"
 
 - name: create directories
   file:
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ dns_configuration[ansible_distribution]['datadir']
-      | default(dns_configuration['default']['datadir'] ) }}"
-    - "{{ dns_configuration[ansible_distribution]['confdir']
-      | default(dns_configuration['default']['confdir'] ) }}"
+    - "{{ dns_datadir }}"
+    - "{{ dns_confdif }}"
 
 - name: create group
   group:
-    name: "{{ dns_configuration[ansible_distribution]['group']
-          | default(dns_configuration['default']['group'] ) }}"
+    name: "{{ dns_group }}"
 
 - name: create user
   user:
-    name: "{{ dns_configuration[ansible_distribution]['owner']
-          | default(dns_configuration['default']['owner'] ) }}"
+    name: "{{ dns_owner }}"
     system: yes
 
 - name: generate rndc key
-  command: rndc-confgen -a -c "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
+  command: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
   args:
-    creates: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
+    creates: "{{ dns_confdir }}/rndc.key"
 
 - name: set permissions on rndc key file
   file:
-    path: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/rndc.key"
-    owner: "{{ dns_configuration[ansible_distribution]['owner'] | default(dns_configuration['default']['owner'] ) }}"
-    group: "{{ dns_configuration[ansible_distribution]['group'] | default(dns_configuration['default']['group'] ) }}"
+    path: "{{ dns_confdir }}/rndc.key"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
 
 - name: get most recent version of the hints/root file
   get_url:
     url: https://www.internic.net/domain/named.root
-    dest: "{{ dns_configuration[ansible_distribution]['datadir'] | default(dns_configuration['default']['datadir'] ) }}/named.root"
+    dest: "{{ dns_datadir }}/named.root"
   when:
     - dns_caching_dns == true
   notify:
@@ -50,7 +56,7 @@
 - name: create zone files
   template:
     src: zone.j2
-    dest: "{{ dns_configuration[ansible_distribution]['datadir'] | default(dns_configuration['default']['datadir'] ) }}/{{ item.name }}.conf"
+    dest: "{{ dns_datadir }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
   notify:
@@ -61,7 +67,7 @@
 - name: add zones to configuration
   template:
     src: named.conf.j2
-    dest: "{{ dns_configuration[ansible_distribution]['confdir'] | default(dns_configuration['default']['confdir'] ) }}/named.conf"
+    dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
     reload configuration
@@ -72,7 +78,6 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ dns_configuration[ansible_distribution]['service']
-          | default(dns_configuration['default']['service'] ) }}"
+    - "{{ dns_service }}"
   when:
     - ansible_virtualization_type != "docker"

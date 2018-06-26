@@ -1,0 +1,4 @@
+---
+# vars file for dns
+dns_packages:
+  - bind

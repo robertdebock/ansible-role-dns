@@ -1,0 +1,9 @@
+---
+# vars file for dns
+dns_confdir: /etc
+dns_group: named
+dns_packages:
+  - bind
+dns_owner: named
+dns_service: bind
+dns_datadir: /var/named
