@@ -22,7 +22,7 @@
     state: directory
   with_items:
     - "{{ dns_datadir }}"
-    - "{{ dns_confdif }}"
+    - "{{ dns_confdir }}"
 
 - name: create group
   group:
