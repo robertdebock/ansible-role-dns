@@ -42,11 +42,11 @@ galaxy_info:
     - system
     - resolving
     - named
-    - Alpine
-    - CentOS
-    - Debian
-    - Fedora
-    - RHEL
-    - Ubuntu
+    - alpine
+    - centOS
+    - debian
+    - fedora
+    - rhel
+    - ubuntu
 
 dependencies: []
