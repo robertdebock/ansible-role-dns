@@ -49,7 +49,7 @@
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
   when:
-    - dns_caching_dns == yes
+    - dns_caching_dns == true
   notify:
     reload zones
 
