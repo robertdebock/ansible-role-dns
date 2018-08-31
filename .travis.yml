@@ -80,4 +80,5 @@ script:
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
   slack: robertdebock:${slack_token}
+    secure: "O1oN4YjqV2GgykdO6VznWC5fU2Z9JA+7zMJrxCBGLnrbQdwp1dw3FJIoLfwpLmyirpzayk40mJyNDu5hJHeqqT1yL7C0q9XAShtie9O6NfKVoJguiMavKYZVaNF3B7pS77RLPa9PgeDl/viLkjvQthcs3O3mVfzHJv4FFPER/woCKdaqmL0kECvPlMLU58Ixn+ePBvxosLhRnwvi6+Mh9Qbt2ZLEXTRZeZxTd0hoHEyb8csLVH+/QtSbn+MVIOyZYc6qb9Hidyy6lDfnX7Gap8r+CfdAox/7n5pjt8z0Q4xCp7UF4WlWO/VIDJLFE6KT4Jav/B4QMuN+NjmddWT6C8Bn+6to7IlnVthBpytlaFo8g5jtmldziqY6sOJQ17kfh8So+YK/mLR16GaGXhdy5vnhZF4A2CyR9IPv50Ux9J/aKomQl/4ZyPDedDEmWo876QgoJls/m6r+i1VFgy+pFXc/Fipjfb9K6YEma1mHeNEvX1vlPtnrxtYQDs3V7/e0jp3RSb7MaTxeWy/Q1paiXEwKwIuPqmDZhAs9w0f3ZT+LsZCzHajaN8QCN8TYDCyMhaEk1zcIWKWwNSmTut5HUtW0JFrulmLCZobDKvq3iTI6FkKyzBUVk/Z3PEfULpRwNSdOrc35bz2ofhuG0jU1U/cXDQnXliWPzmYlWZw2w+s="
   email: false
