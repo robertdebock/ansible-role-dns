@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: dns-alpine-edge
+    image: alpine:edge
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: dns-alpine-latest
+    image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: dns-archlinux
+    image: base/archlinux
+  - name: dns-centos-6
+    image: centos:6
+  - name: dns-centos-latest
+    image: centos:latest
+  - name: dns-debian-latest
+    image: debian:latest
+  - name: dns-debian-stable
+    image: debian:stable
+  - name: dns-debian-unstable
+    image: debian:unstable
+  - name: dns-fedora-latest
+    image: fedora:latest
+  - name: dns-fedora-rawhide
+    image: fedora:rawhide
+  - name: dns-gentoo
+    image: gentoo/stage3-amd64
+  - name: dns-opensuse-leap
+    image: opensuse:leap
+  - name: dns-opensuse-tumbleweed
+    image: opensuse:tumbleweed
+  - name: dns-ubuntu-artful
+    image: ubuntu:artful
+  - name: dns-ubuntu-devel
+    image: ubuntu:devel
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint

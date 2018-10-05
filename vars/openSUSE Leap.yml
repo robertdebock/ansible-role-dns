@@ -1,5 +1,0 @@
----
-# vars file for dns
-dns_confdir: /var/lib/named/etc
-dns_service: named
-dns_datadir: /var/lib/named/var/named
