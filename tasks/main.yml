@@ -19,13 +19,13 @@
 - name: create group
   group:
     name: "{{ dns_group[ansible_distribution]
-          | dns_group['default']) }}"
+          | default(dns_group['default']) }}"
     state: present
 
 - name: create user
   user:
     name: "{{ dns_owner[ansible_distribution]
-          | dns_owner['default']) }}"
+          | default(dns_owner['default']) }}"
     state: present
     system: yes
 
@@ -59,7 +59,7 @@
   template:
     src: zone.j2
     dest: "{{ dns_datadir[ansible_distribution]
-          | dns_datadir['default']) }}/{{ item.name }}.conf"
+          | default(dns_datadir['default']) }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
   notify:
