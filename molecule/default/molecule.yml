@@ -30,8 +30,6 @@ platforms:
     image: fedora:latest
   - name: dns-fedora-rawhide
     image: fedora:rawhide
-  - name: dns-gentoo
-    image: gentoo/stage3-amd64
   - name: dns-opensuse-leap
     image: opensuse:leap
   - name: dns-opensuse-tumbleweed

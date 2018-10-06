@@ -12,9 +12,9 @@
     state: directory
   with_items:
     - "{{ dns_datadir[ansible_distribution]
-      | dns_datadir['default']) }}"
+      | default(dns_datadir['default']) }}"
     - "{{ dns_confdir[ansible_distribution]
-      | dns_confdir['default']) }}"
+      | default(dns_confdir['default']) }}"
 
 - name: create group
   group:
@@ -30,13 +30,16 @@
     system: yes
 
 - name: generate rndc key
-  command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution] | default([dns_confdir['default']) }}/rndc.key"
+  command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution]
+           | default([dns_confdir['default']) }}/rndc.key"
   args:
-    creates: "{{ dns_confdir[ansible_distribution] | default([dns_confdir['default']) }}/rndc.key"
+    creates: "{{ dns_confdir[ansible_distribution]
+             | default([dns_confdir['default']) }}/rndc.key"
 
 - name: set permissions on rndc key file
   file:
-    path: "{{ dns_confdir[ansible_distribution] | default([dns_confdir['default']) }}/rndc.key"
+    path: "{{ dns_confdir[ansible_distribution]
+          | default([dns_confdir['default']) }}/rndc.key"
     owner: "{{ dns_owner[ansible_distribution]
            | dns_owner['default']) }}"
     group: "{{ dns_group[ansible_distribution]
@@ -67,14 +70,16 @@
 - name: add zones to configuration
   template:
     src: named.conf.j2
-    dest: "{{ dns_confdir[ansible_distribution] | default([dns_confdir['default']) }}/named.conf"
+    dest: "{{ dns_confdir[ansible_distribution]
+          | default([dns_confdir['default']) }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
     reload configuration
 
 - name: start and enable dns
   service:
-    name: "{{ dns_service[ansible_distribution] | default(ansible_distribution['default']) }}"
+    name: "{{ dns_service[ansible_distribution]
+          | default(ansible_distribution['default']) }}"
     state: started
     enabled: yes
   when:
