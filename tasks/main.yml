@@ -31,25 +31,25 @@
 
 - name: generate rndc key
   command: rndc-confgen -a -c "{{ dns_confdir[ansible_distribution]
-           | default([dns_confdir['default']) }}/rndc.key"
+           | default(dns_confdir['default']) }}/rndc.key"
   args:
     creates: "{{ dns_confdir[ansible_distribution]
-             | default([dns_confdir['default']) }}/rndc.key"
+             | default(dns_confdir['default']) }}/rndc.key"
 
 - name: set permissions on rndc key file
   file:
     path: "{{ dns_confdir[ansible_distribution]
-          | default([dns_confdir['default']) }}/rndc.key"
+          | default(dns_confdir['default']) }}/rndc.key"
     owner: "{{ dns_owner[ansible_distribution]
-           | dns_owner['default']) }}"
+           | default(dns_owner['default']) }}"
     group: "{{ dns_group[ansible_distribution]
-           | dns_group['default']) }}"
+           | default(dns_group['default']) }}"
 
 - name: get most recent version of the hints/root file
   get_url:
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir[ansible_distribution]
-          | dns_datadir['default']) }}/named.root"
+          | default(dns_datadir['default']) }}/named.root"
   when:
     - dns_caching_dns == true
   notify:
@@ -71,7 +71,7 @@
   template:
     src: named.conf.j2
     dest: "{{ dns_confdir[ansible_distribution]
-          | default([dns_confdir['default']) }}/named.conf"
+          | default(dns_confdir['default']) }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
     reload configuration
