@@ -51,7 +51,7 @@
     dest: "{{ dns_datadir[ansible_distribution]
           | default(dns_datadir['default']) }}/named.root"
   when:
-    - dns_caching_dns == true
+    - dns_caching_dns
   notify:
     reload zones
 
