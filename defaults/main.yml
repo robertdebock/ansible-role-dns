@@ -1,6 +1,10 @@
 ---
 # defaults file for dns
+
+# Should the DNS server be a caching DNS server?
 dns_caching_dns: yes
+
+# A list of zones and properties per zone.
 dns_zones:
   - name: localhost
     soa: localhost

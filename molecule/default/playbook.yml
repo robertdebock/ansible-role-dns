@@ -5,9 +5,5 @@
   become: true
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: ansible-role-dns
-
-  tasks:
-    - name: test connection
-      ping:
+    - robertdebock.bootstrap
+    - ansible-role-dns

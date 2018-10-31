@@ -5,5 +5,5 @@
   become: true
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: ansible-role-dns
+    - robertdebock.bootstrap
+    - ansible-role-dns
