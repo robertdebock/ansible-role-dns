@@ -1,19 +1,6 @@
 ---
 # vars file for dns
-dns_confdir:
-  default: /etc
-  Alpine: /etc/bind
-  Debian: /etc/bind
-  Ubuntu: /etc/bind
-  openSUSE Leap: /var/lib/named/etc
-  openSUSE Tumbleweed: /var/lib/named/etc
-
-dns_group:
-  default: named
-  Debian: bind
-  Ubuntu: bind
-
-dns_packages:
+_dns_packages:
   default:
     - bind
   Debian:
@@ -21,12 +8,42 @@ dns_packages:
   Ubuntu:
     - bind9
 
-dns_owner:
+dns_packages: "{{ _dns_packages[ansible_distribution] | default(_dns_packages['default']) }}"
+
+_dns_datadir:
+  default: /var/named
+  Debian: /etc/bind
+  Ubuntu: /etc/bind
+  openSUSE Leap: /var/lib/named/var/named
+  openSUSE Tumbleweed: /var/lib/named/var/named
+
+dns_datadir: "{{ _dns_datadir[ansible_distribution] | default(_dns_datadir['default']) }}"
+
+_dns_confdir:
+  default: /etc
+  Alpine: /etc/bind
+  Debian: /etc/bind
+  Ubuntu: /etc/bind
+  openSUSE Leap: /var/lib/named/etc
+  openSUSE Tumbleweed: /var/lib/named/etc
+
+dns_confdir: "{{ _dns_confdir[ansible_distribution] | default(_dns_confdir['default']) }}"
+
+_dns_group:
   default: named
   Debian: bind
   Ubuntu: bind
 
-dns_service:
+dns_group: "{{ _dns_group[ansible_distribution] | default(_dns_group['default']) }}"
+
+_dns_owner:
+  default: named
+  Debian: bind
+  Ubuntu: bind
+
+dns_owner: "{{ _dns_owner[ansible_distribution] | default(_dns_owner['default']) }}"
+
+_dns_service:
   default: bind
   CentOS: named
   Debian: bind9
@@ -35,9 +52,4 @@ dns_service:
   openSUSE Leap: named
   openSUSE Tumbleweed: named
 
-dns_datadir:
-  default: /var/named
-  Debian: /etc/bind
-  Ubuntu: /etc/bind
-  openSUSE Leap: /var/lib/named/var/named
-  openSUSE Tumbleweed: /var/lib/named/var/named
+dns_service: "{{ _dns_service[ansible_distribution] | default(_dns_service['default']) }}"

@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 options {
-  directory "{{ dns_datadir[ansible_distribution] | default(dns_datadir['default']) }}";
+  directory "{{ dns_datadir }}";
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on { any; };
@@ -11,18 +11,18 @@ options {
 {% if dns_caching_dns is defined %}
 zone "." {
   type hint;
-  file "{{ dns_datadir[ansible_distribution] | default(dns_datadir['default']) }}/named.root";
+  file "{{ dns_datadir }}/named.root";
 };
 {% endif %}
 
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
   type master;
-  file "{{ dns_datadir[ansible_distribution] | default(dns_datadir['default']) }}/{{ zone.name }}.conf";
+  file "{{ dns_datadir }}/{{ zone.name }}.conf";
 };
 {% endfor %}
 
-include "{{ dns_confdir[ansible_distribution] | default(dns_confdir['default']) }}/rndc.key";
+include "{{ dns_confdir }}/rndc.key";
 
 controls {
   inet 127.0.0.1 port 953
