@@ -3,8 +3,7 @@ dns
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-dns.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-dns)
 
-This role installs ISC Bind and provides the ability to configure DNS and records.
-
+The purpose of this role is to install and configure dns on your system.
 
 Example Playbook
 ----------------

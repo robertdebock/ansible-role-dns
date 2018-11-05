@@ -2,7 +2,7 @@
 galaxy_info:
   author: Robert de Bock
   role_name: dns
-  description: Provides dns and zone configuration.
+  description: The purpose of this role is to install and configure dns on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: 2.4
