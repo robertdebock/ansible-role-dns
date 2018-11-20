@@ -38,6 +38,8 @@ platforms:
     image: ubuntu:artful
   - name: dns-ubuntu-devel
     image: ubuntu:devel
+  - name: dns-ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:
