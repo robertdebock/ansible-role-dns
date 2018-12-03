@@ -4,6 +4,9 @@
   package:
     name: "{{ dns_packages }}"
     state: "{{ dns_package_state }}"
+  register: dns_install_dns
+  until: dns_install_dns is succeeded
+  retries: 3
 
 - name: create directories
   file:
