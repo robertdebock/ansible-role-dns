@@ -53,9 +53,9 @@
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
-  notify:
-    - reload zones
+  notify:   
     - set dns_owner to owner of dns directory recursively
+    - reload zones
   loop_control:
     label: "{{ item.name }}"
 
@@ -65,8 +65,8 @@
     dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
-    - reload configuration
     - set dns_owner to owner of dns directory recursively
+    - reload configuration
 
 - name: start and enable dns
   service:

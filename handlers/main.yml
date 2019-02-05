@@ -15,5 +15,5 @@
     path: "{{ dns_confdir }}"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
-    mode: 0644
+    mode: 0640
     recurse: true
