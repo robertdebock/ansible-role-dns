@@ -53,7 +53,7 @@
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
   with_items:
     - "{{ dns_zones }}"
-  notify:   
+  notify:
     - set dns_owner to owner of dns directory recursively
     - reload zones
   loop_control:
