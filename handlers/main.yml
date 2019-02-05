@@ -14,6 +14,6 @@
   file:
     path: "{{ dns_confdir }}"
     owner: "{{ dns_owner }}"
-    group: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
     mode: 0644
     recurse: true
