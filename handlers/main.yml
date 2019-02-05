@@ -1,5 +1,13 @@
 ---
 # handlers file for dns
+- name: set dns_owner to owner of dns directory recursively
+  file:
+    path: "{{ dns_confdir }}"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
+    mode: 0640
+    recurse: true
+
 - name: reload zones
   command: rndc reload
   when:
@@ -9,11 +17,3 @@
   command: rndc reload
   when:
     - ansible_virtualization_type != "docker" or dns_ignore_docker
-
-- name: set dns_owner to owner of dns directory recursively
-  file:
-    path: "{{ dns_confdir }}"
-    owner: "{{ dns_owner }}"
-    group: "{{ dns_group }}"
-    mode: 0640
-    recurse: true
