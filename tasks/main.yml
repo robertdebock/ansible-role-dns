@@ -54,9 +54,11 @@
   with_items:
     - "{{ dns_zones }}"
   notify:
-    reload zones
+    - reload zones
+    - set dns_owner to owner of dns directory recursively
   loop_control:
     label: "{{ item.name }}"
+    
 
 - name: add zones to configuration
   template:
@@ -64,7 +66,8 @@
     dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
   notify:
-    reload configuration
+    - reload configuration
+    - set dns_owner to owner of dns directory recursively
 
 - name: start and enable dns
   service:
