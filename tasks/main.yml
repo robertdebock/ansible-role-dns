@@ -58,7 +58,6 @@
     - set dns_owner to owner of dns directory recursively
   loop_control:
     label: "{{ item.name }}"
-    
 
 - name: add zones to configuration
   template:
