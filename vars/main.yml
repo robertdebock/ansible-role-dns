@@ -12,8 +12,10 @@ dns_packages: "{{ _dns_packages[ansible_distribution] | default(_dns_packages['d
 
 _dns_datadir:
   default: /var/named
-  Debian: /etc/bind
-  Ubuntu: /etc/bind
+  # Debian: /etc/bind
+  Debian: /var/lib/bind
+  # Ubuntu: /etc/bind
+  Ubuntu: /var/lib/bind
   openSUSE Leap: /var/lib/named/var/named
   openSUSE Tumbleweed: /var/lib/named/var/named
 
