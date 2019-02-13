@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: dns-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: dns-ubuntu-artful
-    image: ubuntu:artful
+  - name: dns-ubuntu-latest
+    image: ubuntu:latest
+  - name: dns-ubuntu-rolling
+    image: ubuntu:rolling
   - name: dns-ubuntu-devel
     image: ubuntu:devel
   - name: dns-ubuntu-latest
