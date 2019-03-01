@@ -15,7 +15,6 @@ _dns_datadir:
   Debian: /var/lib/bind
   Ubuntu: /var/lib/bind
   openSUSE Leap: /var/lib/named/var/named
-  openSUSE Tumbleweed: /var/lib/named/var/named
 
 dns_datadir: "{{ _dns_datadir[ansible_distribution] | default(_dns_datadir['default']) }}"
 
@@ -25,7 +24,6 @@ _dns_confdir:
   Debian: /etc/bind
   Ubuntu: /etc/bind
   openSUSE Leap: /var/lib/named/etc
-  openSUSE Tumbleweed: /var/lib/named/etc
 
 dns_confdir: "{{ _dns_confdir[ansible_distribution] | default(_dns_confdir['default']) }}"
 
@@ -50,6 +48,5 @@ _dns_service:
   Fedora: named
   Ubuntu: bind9
   openSUSE Leap: named
-  openSUSE Tumbleweed: named
 
 dns_service: "{{ _dns_service[ansible_distribution] | default(_dns_service['default']) }}"
