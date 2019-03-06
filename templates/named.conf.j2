@@ -36,7 +36,7 @@ zone "{{ zone.name }}" {
 {% if zone.dns_zone_forwarders is defined %}
   forwarders {
 {% for zone_forwarder in zone.dns_zone_forwarders %}
-  "{{ zone_forwarder }}";
+    {{ zone_forwarder }};
 {% endfor %}
   };
 {% endif %}
