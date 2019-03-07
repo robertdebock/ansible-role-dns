@@ -88,6 +88,10 @@ dns_zones:
       - name: mail2.example.com.
         priority: 20
     records:
+      - name: dns1
+        value: 127.0.0.1
+      - name: dns2
+        value: 127.0.0.1
       - name: www
         value: 127.0.0.1
       - name: dns1
@@ -98,6 +102,28 @@ dns_zones:
         value: 127.0.0.1
       - name: mail2
         value: 127.0.0.1
+
+  - name: forwarded.example.com
+    ns:
+      - name: dns1.forwarded.example.com.
+      - name: dns2.forwarded.example.com.
+    records:
+      - name: dns1
+        value: 127.0.0.1
+      - name: dns2
+        value: 127.0.0.1
+    dns_zone_forwarders:
+      - 1.1.1.1
+      - 8.8.8.8
+
+# An optional list of acls to allow recursion. ("any" and "none" are always available.)
+dns_allow_recursion:
+  - none
+
+# An optional setting to forward traffic to other DNS servers.
+# dns_options_forwarders:
+#   - 1.1.1.1
+#   - 8.8.8.8
 
 # To update all packages installed by this roles, set `dns_package_state` to `latest`.
 dns_package_state: present
