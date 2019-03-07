@@ -6,6 +6,20 @@ options {
   listen-on { any; };
   listen-on-v6 { any; };
   allow-query { any; };
+{% if dns_allow_recursion is defined %}
+  allow-recursion {
+{% for acl in dns_allow_recursion %}
+   {{ acl }}; 
+{% endfor %}
+  };
+{% endif %}
+{% if dns_options_forwarders is defined %}
+  forwarders {
+{% for options_forwarder in dns_options_forwarders %}
+    {{ options_forwarder }};
+{% endfor %}
+  };
+{% endif %}
 };
 
 {% if dns_caching_dns is defined %}
@@ -19,6 +33,13 @@ zone "." {
 zone "{{ zone.name }}" {
   type master;
   file "{{ dns_datadir }}/{{ zone.name }}.conf";
+{% if zone.dns_zone_forwarders is defined %}
+  forwarders {
+{% for zone_forwarder in zone.dns_zone_forwarders %}
+    {{ zone_forwarder }};
+{% endfor %}
+  };
+{% endif %}
 };
 {% endfor %}
 
