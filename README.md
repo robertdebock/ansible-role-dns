@@ -123,9 +123,6 @@ dns_allow_recursion:
 # dns_options_forwarders:
 #   - 1.1.1.1
 #   - 8.8.8.8
-
-# To update all packages installed by this roles, set `dns_package_state` to `latest`.
-dns_package_state: present
 ```
 
 Requirements

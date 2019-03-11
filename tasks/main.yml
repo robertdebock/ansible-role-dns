@@ -3,7 +3,7 @@
 - name: install dns
   package:
     name: "{{ dns_packages }}"
-    state: "{{ dns_package_state }}"
+    state: present
   register: dns_install_dns
   until: dns_install_dns is succeeded
   retries: 3
