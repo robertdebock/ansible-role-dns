@@ -1,10 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: no
   become: yes
-  serial: 30%
+  gather_facts: yes
 
   roles:
-    - robertdebock.bootstrap
     - ansible-role-dns

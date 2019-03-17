@@ -1,5 +1,5 @@
 ---
-- name: Converge
+- name: Prepare
   hosts: all
   gather_facts: no
   become: yes
@@ -7,4 +7,3 @@
 
   roles:
     - robertdebock.bootstrap
-    - ansible-role-dns
