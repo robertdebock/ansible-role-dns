@@ -13,7 +13,7 @@ platforms:
   - name: dns-debian
     box: debian/stretch64
   - name: dns-fedora
-    box: fedora/29-cloud-base
+    box: fedora/30-cloud-base
 provisioner:
   name: ansible
   playbooks:
@@ -21,5 +21,9 @@ provisioner:
     converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
+  inventory:
+    host_vars:
+      dns-fedora:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: vagrant
