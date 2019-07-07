@@ -3,6 +3,9 @@
 _dns_packages:
   default:
     - bind
+  Alpine:
+    - bind
+    - bind-tools
   Debian:
     - bind9
   Ubuntu:
