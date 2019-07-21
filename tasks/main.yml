@@ -42,6 +42,9 @@
   get_url:
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
+  register: dns_get_most_recent_version_of_the_hints_root_file
+  until: dns_get_most_recent_version_of_the_hints_root_file is succeeded
+  retries: 3
   when:
     - dns_caching_dns | bool
   notify:
