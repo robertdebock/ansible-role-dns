@@ -8,48 +8,40 @@ _dns_packages:
     - bind-tools
   Debian:
     - bind9
-  Ubuntu:
-    - bind9
 
-dns_packages: "{{ _dns_packages[ansible_distribution] | default(_dns_packages['default']) }}"
+dns_packages: "{{ _dns_packages[ansible_os_family] | default(_dns_packages['default']) }}"
 
 _dns_datadir:
   default: /var/named
   Debian: /var/lib/bind
-  Ubuntu: /var/lib/bind
-  openSUSE Leap: /var/lib/named/var/named
+  Suse: /var/lib/named/var/named
 
-dns_datadir: "{{ _dns_datadir[ansible_distribution] | default(_dns_datadir['default']) }}"
+dns_datadir: "{{ _dns_datadir[ansible_os_family] | default(_dns_datadir['default']) }}"
 
 _dns_confdir:
   default: /etc
   Alpine: /etc/bind
   Debian: /etc/bind
-  Ubuntu: /etc/bind
-  openSUSE Leap: /var/lib/named/etc
+  Suse: /var/lib/named/etc
 
-dns_confdir: "{{ _dns_confdir[ansible_distribution] | default(_dns_confdir['default']) }}"
+dns_confdir: "{{ _dns_confdir[ansible_os_family] | default(_dns_confdir['default']) }}"
 
 _dns_group:
   default: named
   Debian: bind
-  Ubuntu: bind
 
-dns_group: "{{ _dns_group[ansible_distribution] | default(_dns_group['default']) }}"
+dns_group: "{{ _dns_group[ansible_os_family] | default(_dns_group['default']) }}"
 
 _dns_owner:
   default: named
   Debian: bind
-  Ubuntu: bind
 
-dns_owner: "{{ _dns_owner[ansible_distribution] | default(_dns_owner['default']) }}"
+dns_owner: "{{ _dns_owner[ansible_os_family] | default(_dns_owner['default']) }}"
 
 _dns_service:
   default: bind
-  CentOS: named
+  RedHat: named
   Debian: bind9
-  Fedora: named
-  Ubuntu: bind9
-  openSUSE Leap: named
+  Suse: named
 
-dns_service: "{{ _dns_service[ansible_distribution] | default(_dns_service['default']) }}"
+dns_service: "{{ _dns_service[ansible_os_family] | default(_dns_service['default']) }}"
