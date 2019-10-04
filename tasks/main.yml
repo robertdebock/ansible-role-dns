@@ -38,10 +38,11 @@
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
 
-- name: get most recent version of the hints/root file
+- name: get the hints/root file
   get_url:
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
+    validate_certs: "{{ dns_validate_certs }}"
   register: dns_get_most_recent_version_of_the_hints_root_file
   until: dns_get_most_recent_version_of_the_hints_root_file is succeeded
   retries: 3

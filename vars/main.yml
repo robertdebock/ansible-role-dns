@@ -11,6 +11,12 @@ _dns_packages:
 
 dns_packages: "{{ _dns_packages[ansible_os_family] | default(_dns_packages['default']) }}"
 
+_dns_validate_certs:
+  default: yes
+  Debian: no
+
+dns_validate_certs: "{{ _dns_validate_certs[ansible_os_family] | default(_dns_validate_certs['default']) }}"
+
 _dns_datadir:
   default: /var/named
   Debian: /var/lib/bind
