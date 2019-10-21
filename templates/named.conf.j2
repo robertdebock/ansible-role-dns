@@ -3,9 +3,27 @@ options {
   directory "{{ dns_datadir }}";
   dnssec-validation auto;
   auth-nxdomain no;
-  listen-on { any; };
-  listen-on-v6 { any; };
-  allow-query { any; };
+  listen-on {
+{% if dns_options_listen_on is defined %}
+  {{ dns_options_listen | join('\n') }}
+{% else %}
+    any;
+{% endif %}
+  };
+  listen-on-v6 {
+{% if dns_options_listen_on_v6 is defined %}
+  {{ dns_options_listen_v6 | join('\n') }}
+{% else %}
+    any;
+{% endif %}
+  };
+  allow-query {
+{% if dns_options_allow_query is defined %}
+  {{ dns_options_allow_query | join('\n') }}
+{% else %}
+    any;
+{% endif %}
+  };
 {% if dns_allow_recursion is defined %}
   allow-recursion {
 {% for acl in dns_allow_recursion %}
