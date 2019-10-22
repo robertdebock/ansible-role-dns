@@ -31,6 +31,13 @@ options {
 {% endfor %}
   };
 {% endif %}
+  allow-transfer {
+{% if dns_allow_transfer is defined %}
+    {{ dns_allow_transfer | join('\n') }}
+{% else %}
+    none;
+{% endif %}
+  };
 {% if dns_options_forwarders is defined %}
   forwarders {
 {% for options_forwarder in dns_options_forwarders %}
