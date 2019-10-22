@@ -5,21 +5,21 @@ options {
   auth-nxdomain no;
   listen-on {
 {% if dns_options_listen_on is defined %}
-  {{ dns_options_listen_on | join('\n') }}
+    {{ dns_options_listen_on | join(';\n    ') }}
 {% else %}
     any;
 {% endif %}
   };
   listen-on-v6 {
 {% if dns_options_listen_on_v6 is defined %}
-  {{ dns_options_listen_on_v6 | join('\n') }}
+    {{ dns_options_listen_on_v6 | join(';\n    ') }}
 {% else %}
     any;
 {% endif %}
   };
   allow-query {
 {% if dns_options_allow_query is defined %}
-  {{ dns_options_allow_query | join('\n') }}
+    {{ dns_options_allow_query | join(';\n    ') }}
 {% else %}
     any;
 {% endif %}
@@ -33,7 +33,7 @@ options {
 {% endif %}
   allow-transfer {
 {% if dns_allow_transfer is defined %}
-    {{ dns_allow_transfer | join('\n') }}
+    {{ dns_allow_transfer | join(';\n    ') }}
 {% else %}
     none;
 {% endif %}
