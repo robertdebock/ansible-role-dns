@@ -1,6 +1,9 @@
 {{ ansible_managed | comment }}
 options {
   directory "{{ dns_datadir }}";
+{% if dns_pid_file is defined %}
+  pid-file "{{ dns_pid_file }}";
+{% endif %}
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on {
