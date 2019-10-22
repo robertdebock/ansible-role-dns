@@ -5,7 +5,7 @@ options {
   auth-nxdomain no;
   listen-on {
 {% if dns_options_listen_on is defined %}
-  {{ dns_options_listen | join('\n') }}
+  {{ dns_options_listen_on | join('\n') }}
 {% else %}
     any;
 {% endif %}
