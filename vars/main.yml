@@ -19,6 +19,7 @@ dns_validate_certs: "{{ _dns_validate_certs[ansible_os_family] | default(_dns_va
 
 _dns_datadir:
   default: /var/named
+  Alpine: /var/bind
   Debian: /var/lib/bind
   Suse: /var/lib/named/var/named
 
