@@ -12,7 +12,7 @@ options {
   };
   listen-on-v6 {
 {% if dns_options_listen_on_v6 is defined %}
-  {{ dns_options_listen_v6 | join('\n') }}
+  {{ dns_options_listen_on_v6 | join('\n') }}
 {% else %}
     any;
 {% endif %}
