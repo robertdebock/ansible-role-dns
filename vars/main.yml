@@ -19,6 +19,7 @@ dns_validate_certs: "{{ _dns_validate_certs[ansible_os_family] | default(_dns_va
 
 _dns_datadir:
   default: /var/named
+  Alpine: /var/bind
   Debian: /var/lib/bind
   Suse: /var/lib/named/var/named
 
@@ -46,6 +47,7 @@ dns_owner: "{{ _dns_owner[ansible_os_family] | default(_dns_owner['default']) }}
 
 _dns_service:
   default: bind
+  Alpine: named
   RedHat: named
   Debian: bind9
   Suse: named
