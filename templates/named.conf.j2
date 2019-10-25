@@ -1,11 +1,28 @@
 {{ ansible_managed | comment }}
 options {
   directory "{{ dns_datadir }}";
+{% if dns_pid_file is defined %}
+  pid-file "{{ dns_pid_file }}";
+{% endif %}
   dnssec-validation auto;
   auth-nxdomain no;
-  listen-on { any; };
-  listen-on-v6 { any; };
-  allow-query { any; };
+  listen-on {
+{% for ipv4 in dns_options_listen_on %}
+    {{ ipv4 }};
+{% endfor %}
+  };
+  listen-on-v6 {
+{% for ipv6 in dns_options_listen_on_v6 %}
+    {{ ipv6 }};
+{% endfor %}
+  };
+{% if dns_options_allow_query is defined %}
+  allow-query {
+{% for ip in dns_options_allow_query %}
+    {{ ip }};
+{% endfor %}
+  };
+{% endif %}
 {% if dns_allow_recursion is defined %}
   allow-recursion {
 {% for acl in dns_allow_recursion %}
@@ -13,6 +30,15 @@ options {
 {% endfor %}
   };
 {% endif %}
+  allow-transfer {
+{% if dns_options_allow_transfer is defined %}
+{% for ip in dns_options_allow_transfer %}
+    {{ ip }};
+{% endfor %}
+{% else %}
+    none;
+{% endif %}
+  };
 {% if dns_options_forwarders is defined %}
   forwarders {
 {% for options_forwarder in dns_options_forwarders %}
