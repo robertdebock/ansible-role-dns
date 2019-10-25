@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: EL
+    reason: RedHat does not supply `bind` without a subscription.
