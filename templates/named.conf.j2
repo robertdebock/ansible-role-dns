@@ -48,7 +48,7 @@ options {
 {% endif %}
 };
 
-{% if dns_caching_dns is defined %}
+{% if dns_caching_dns is defined and dns_caching_dns | bool %}
 zone "." {
   type hint;
   file "{{ dns_datadir }}/named.root";
