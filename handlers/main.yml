@@ -2,10 +2,6 @@
 # handlers file for dns
 - name: reload zones
   command: rndc reload
-  when:
-    - ansible_virtualization_type != "docker"
 
 - name: reload configuration
   command: rndc reload
-  when:
-    - ansible_virtualization_type != "docker"
