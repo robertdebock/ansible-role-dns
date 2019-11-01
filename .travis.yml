@@ -19,7 +19,6 @@ env:
     - image="debian"
     - image="fedora"
     - image="fedora" tag="rawhide"
-    - image="opensuse"
     - image="ubuntu" tag="rolling"
     - image="ubuntu" tag="devel"
     - image="ubuntu"
