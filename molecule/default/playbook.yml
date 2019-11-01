@@ -5,4 +5,4 @@
   gather_facts: yes
 
   roles:
-    - ansible-role-dns
+    - role: ansible-role-dns

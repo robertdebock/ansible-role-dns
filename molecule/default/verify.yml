@@ -1,0 +1,23 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _nslookup_package:
+      Alpine: bind-tools
+      Archlinux: dnsutils
+      Debian: dnsutils
+      RedHat: bind-utils
+
+    nslookup_package: "{{ _nslookup_package[ansible_os_family] }}"
+
+  tasks:
+    - name: install nslookup
+      package:
+        name: "{{ nslookup_package }}"
+        state: present
+
+    - name: test resolving www.example.com
+      command: nslookup www.example.com 127.0.0.1

@@ -21,7 +21,7 @@ This example is taken from `molecule/resources/playbook.yml`:
   gather_facts: yes
 
   roles:
-    - robertdebock.dns
+    - role: robertdebock.dns
 ```
 
 The machine you are running this on, may need to be prepared.
@@ -33,8 +33,8 @@ The machine you are running this on, may need to be prepared.
   become: yes
 
   roles:
-    - robertdebock.bootstrap
-    - robertdebock.core_dependencies
+    - role: robertdebock.bootstrap
+    - role: robertdebock.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
