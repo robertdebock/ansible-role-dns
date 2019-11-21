@@ -36,7 +36,6 @@ galaxy_info:
     - resolving
     - named
     - centos
-    - debian
     - fedora
     - rhel
     - ubuntu
