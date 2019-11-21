@@ -35,7 +35,6 @@ galaxy_info:
     - system
     - resolving
     - named
-    - alpine
     - centos
     - debian
     - fedora
