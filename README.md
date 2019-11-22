@@ -9,7 +9,7 @@ Install and configure dns on your system.
 Example Playbook
 ----------------
 
-This example is taken from `molecule/resources/playbook.yml`:
+This example is taken from `molecule/resources/playbook.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -21,7 +21,7 @@ This example is taken from `molecule/resources/playbook.yml`:
     - role: robertdebock.dns
 ```
 
-The machine you are running this on, may need to be prepared.
+The machine you are running this on, may need to be prepared, I use this playbook to ensure everything is in place to let the role work.
 ```yaml
 ---
 - name: Prepare
@@ -32,6 +32,34 @@ The machine you are running this on, may need to be prepared.
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
+```
+
+After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
+```yaml
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _nslookup_package:
+      Alpine: bind-tools
+      Archlinux: dnsutils
+      Debian: dnsutils
+      RedHat: bind-utils
+
+    nslookup_package: "{{ _nslookup_package[ansible_os_family] }}"
+
+  tasks:
+    - name: install nslookup
+      package:
+        name: "{{ nslookup_package }}"
+        state: present
+
+    - name: test resolving www.example.com
+      command: nslookup www.example.com 127.0.0.1
+
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
