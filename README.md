@@ -246,7 +246,6 @@ Some variarations of the build matrix do not work. These are the variations and 
 | openSuse | Some tasks will not get idempotent. |
 
 
-
 Testing
 -------
 
