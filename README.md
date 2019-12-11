@@ -60,7 +60,6 @@ After running this role, this playbook runs to verify that everything works, thi
     - name: test resolving www.example.com
       command: nslookup www.example.com 127.0.0.1
 ```
-```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
