@@ -222,7 +222,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |---------|----|
 |amazon|all|
 |alpine|all|
-|archlinux|all|
 |debian|all|
 |fedora|all|
 |ubuntu|artful, bionic|
