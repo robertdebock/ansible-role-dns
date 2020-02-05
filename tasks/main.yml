@@ -12,7 +12,7 @@
   file:
     path: "{{ item }}"
     state: directory
-  with_items:
+  loop:
     - "{{ dns_datadir }}"
     - "{{ dns_confdir }}"
 
@@ -55,8 +55,7 @@
   template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
-  with_items:
-    - "{{ dns_zones }}"
+  loop: "{{ dns_zones }}"
   notify:
     reload zones
   loop_control:
