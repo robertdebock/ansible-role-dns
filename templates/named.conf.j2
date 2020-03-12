@@ -57,8 +57,10 @@ zone "." {
 
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
-  type master;
+  type {{ zone.type | default('master') }};
+{% if zone.type is not defined or zone.type == "master" %}
   file "{{ dns_datadir }}/{{ zone.name }}.conf";
+{% endif %}
 {% if zone.dns_zone_forwarders is defined %}
   forwarders {
 {% for zone_forwarder in zone.dns_zone_forwarders %}

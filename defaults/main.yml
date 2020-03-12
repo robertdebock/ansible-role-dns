@@ -72,14 +72,7 @@ dns_zones:
         value: 127.0.0.1
 
   - name: forwarded.example.com
-    ns:
-      - name: dns1.forwarded.example.com.
-      - name: dns2.forwarded.example.com.
-    records:
-      - name: dns1
-        value: 127.0.0.1
-      - name: dns2
-        value: 127.0.0.1
+    type: forward
     dns_zone_forwarders:
       - 1.1.1.1
       - 8.8.8.8
