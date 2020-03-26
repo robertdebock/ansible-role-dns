@@ -19,8 +19,6 @@ env:
     - image="alpine" tag="latest"
     - image="alpine" tag="edge"
     - image="debian" tag="latest"
-    - image="debian" tag="testing"
-    - image="debian" tag="unstable"
     - image="fedora" tag="30"
     - image="fedora" tag="latest"
     - image="fedora" tag="rawhide"
