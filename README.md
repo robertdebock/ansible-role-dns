@@ -221,11 +221,11 @@ Example usage:
 ```dns_zones: "{{ lookup('cluster_dns', servers=groups['dns'], zones=my_zones, hostvars=hostvars, grouping='dns') }}"```
 
 * lookup: This calls the lookup module.
-** cluster_dns: The module being called.
-** servers: a list of servers being used for DNS.  The above example uses the inventory group DNS.
-** zones: dns_zone variable needing nameserver information.  
-** hostvars: hostvars.  This variable is created when the playbook is run.  It contains the needed IP information.
-** grouping: (Optional) places all of the dns ips behind a single name.  Useful if DNS server is also NTP, Consul...
+ * cluster_dns: The module being called.
+ * servers: a list of servers being used for DNS.  The above example uses the inventory group DNS.
+ * zones: dns_zone variable needing nameserver information.  
+ * hostvars: hostvars.  This variable is created when the playbook is run.  It contains the needed IP information.
+ * grouping: (Optional) places all of the dns ips behind a single name.  Useful if DNS server is also NTP, Consul...
 
 ## Requirements
 
