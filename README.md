@@ -176,6 +176,40 @@ dns_options_listen_on_v6:
 # dns_options_forwarders:
 #   - 1.1.1.1
 #   - 8.8.8.8
+
+# Another example thanks to @blaisep.
+# dns_zones:
+#   - name: lab.controlplane.info
+#     ttl: 600
+#     ns:
+#       - name: ns.lab.controlplane.info.
+#     mx:
+#       - name: mail1.lab.controlplane.info.
+#         priority: 10
+#       - name: mail2.lab.controlplane.info.
+#         priority: 20
+#     records:
+#       - name: ns
+#         value: 192.168.254.27
+#       - name: git
+#         value: 192.168.254.19
+#       - name: dl380
+#         value: 192.168.254.27
+#       - name: mail1
+#         value: 192.168.123.123
+#       - name: mail2
+#         value: 192.168.123.123
+#   - name: forwarded.lab.controlplane.info
+#     ns:
+#       - name: forwarded.lab.controlplane.info.
+#     records:
+#       - name: ns
+#         value: 192.168.254.27
+#       - name: "@"
+#         value: 192.168.123.123
+#     dns_zone_forwarders:
+#       - 9.9.9.9
+#       - 8.8.8.8
 ```
 
 ## Requirements
