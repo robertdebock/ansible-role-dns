@@ -243,7 +243,7 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |alpine|all|
 |debian|all|
 |fedora|all|
-|ubuntu|bionic|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.8 but tests have been done to:
 
