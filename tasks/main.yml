@@ -1,5 +1,8 @@
 ---
 # tasks file for dns
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: install dns
   package:
     name: "{{ dns_packages }}"

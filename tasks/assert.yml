@@ -1,0 +1,90 @@
+---
+- name: test if dns_caching_dns is set correctly
+  assert:
+    that:
+      - dns_caching_dns is defined
+      - dns_caching_dns | type_debug == "bool"
+
+- name: test if dns_zones is set correctly
+  assert:
+    that:
+      - dns_zones is defined
+      - dns_zones | length > 0
+      - dns_zones is iterable
+
+- name: test if item in dns_zones is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+      - item.records is defined
+      - item.records | length > 0
+      - item.records is iterable
+  loop: "{{ dns_zones }}"
+  when:
+    - dns_zones is defined
+    - item.type is not defined
+
+- name: test if item in dns_zones is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+      - item.type is defined
+      - item.type | length > 0
+      - item.type in ["forward"]
+      - item.dns_zone_forwarders is defined
+      - item.dns_zone_forwarders | length > 0
+      - item.dns_zone_forwarders is iterable
+  loop: "{{ dns_zones }}"
+  when:
+    - dns_zones is defined
+    - item.type is defined
+
+- name: test if dns_allow_recursion is set correctly
+  assert:
+    that:
+      - dns_allow_recursion | length > 0
+      - dns_allow_recursion is iterable
+  when:
+    - dns_allow_recursion is defined
+
+- name: test if dns_options_listen_on is set correctly
+  assert:
+    that:
+      - dns_options_listen_on | length > 0
+      - dns_options_listen_on is iterable
+  when:
+    - dns_options_listen_on is defined
+
+- name: test if dns_options_allow_query is set correctly
+  assert:
+    that:
+      - dns_options_allow_query | length > 0
+      - dns_options_allow_query is iterable
+  when:
+    - dns_options_allow_query is defined
+
+- name: test if dns_pid_file is set correctly
+  assert:
+    that:
+      - item | length > 0
+  when:
+    - dns_pid_file is defined
+
+- name: test if dns_options_forwarders is set correctly
+  assert:
+    that:
+      - dns_options_forwarders | length > 0
+      - dns_options_forwarders is iterable
+  when:
+    - dns_options_forwarders is defined
+
+- name: test if item in dns_options_forwarders is set correctly
+  assert:
+    that:
+      - item is defined
+      - item | length > 0
+  loop: "{{ dns_options_forwarders }}"
+  when:
+    - dns_options_forwarders is defined

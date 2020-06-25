@@ -10,7 +10,7 @@ dns_zones:
     soa: localhost
     serial: 1
     refresh: 604800
-    rety: 86400
+    retry: 86400
     expire: 2419200
     ttl: 604800
     records:
@@ -83,26 +83,26 @@ dns_allow_recursion:
 
 # An optional list of IPv4 on which the DNS server will listen. ("any" and "none" are always available.)
 dns_options_listen_on:
-  - 'any'
+  - any
 
 # A optional list of IPv6 on which the DNS server will listen. ("any" and "none" are always available.)
 dns_options_listen_on_v6:
-  - 'any'
+  - any
 
 # An optional list of IP which are allowed to query the server. ("any" and "none" are always available.)
 # Default: "any"
 # dns_options_allow_query:
-#  - 'any'
-#  - '127.0.0.1'
+#  - any
+#  - 127.0.0.1
 
 # An optional list of IP which are allowed to run a AXFR query. ("any" and "none" are always available.)
 # Default: "none"
 # dns_options_allow_transfer:
-#   - 'none'
-#   - '172.16.0.1'
+#   - none
+#   - 172.16.0.1
 
 # An optional setting to congifure the path where the pid file will be created.
-# dns_pid_file: '/var/run/named/named.pid'
+# dns_pid_file: /var/run/named/named.pid
 
 # An optional setting to forward traffic to other DNS servers.
 # dns_options_forwarders:
