@@ -20,6 +20,7 @@
       - item.records is defined
       - item.records | length > 0
       - item.records is iterable
+    quiet: yes
   loop: "{{ dns_zones }}"
   when:
     - dns_zones is defined
@@ -36,6 +37,7 @@
       - item.dns_zone_forwarders is defined
       - item.dns_zone_forwarders | length > 0
       - item.dns_zone_forwarders is iterable
+    quiet: yes
   loop: "{{ dns_zones }}"
   when:
     - dns_zones is defined
@@ -85,6 +87,7 @@
     that:
       - item is defined
       - item | length > 0
+    quiet: yes
   loop: "{{ dns_options_forwarders }}"
   when:
     - dns_options_forwarders is defined
