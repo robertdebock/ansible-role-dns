@@ -1,5 +1,6 @@
 ---
 # vars file for dns
+
 _dns_packages:
   default:
     - bind
