@@ -22,6 +22,8 @@
       - item.records is iterable
     quiet: yes
   loop: "{{ dns_zones }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - dns_zones is defined
     - item.type is not defined
@@ -29,8 +31,6 @@
 - name: test if item in dns_zones is set correctly
   assert:
     that:
-      - item.name is defined
-      - item.name | length > 0
       - item.type is defined
       - item.type | length > 0
       - item.type in ["forward"]
@@ -39,6 +39,8 @@
       - item.dns_zone_forwarders is iterable
     quiet: yes
   loop: "{{ dns_zones }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - dns_zones is defined
     - item.type is defined
