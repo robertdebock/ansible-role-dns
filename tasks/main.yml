@@ -7,9 +7,6 @@
   package:
     name: "{{ dns_packages }}"
     state: present
-  register: dns_install_dns
-  until: dns_install_dns is succeeded
-  retries: 3
 
 - name: create directories
   file:
@@ -46,9 +43,6 @@
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
     validate_certs: "{{ dns_validate_certs }}"
-  register: dns_get_most_recent_version_of_the_hints_root_file
-  until: dns_get_most_recent_version_of_the_hints_root_file is succeeded
-  retries: 3
   when:
     - dns_caching_dns | bool
   notify:
