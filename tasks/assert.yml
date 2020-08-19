@@ -4,6 +4,7 @@
     that:
       - dns_caching_dns is defined
       - dns_caching_dns | type_debug == "bool"
+    quiet: yes
 
 - name: test if dns_zones is set correctly
   assert:
@@ -11,6 +12,7 @@
       - dns_zones is defined
       - dns_zones | length > 0
       - dns_zones is iterable
+    quiet: yes
 
 - name: test if item in dns_zones is set correctly
   assert:
@@ -50,6 +52,7 @@
     that:
       - dns_allow_recursion | length > 0
       - dns_allow_recursion is iterable
+    quiet: yes
   when:
     - dns_allow_recursion is defined
 
@@ -58,6 +61,7 @@
     that:
       - dns_options_listen_on | length > 0
       - dns_options_listen_on is iterable
+    quiet: yes
   when:
     - dns_options_listen_on is defined
 
@@ -66,6 +70,7 @@
     that:
       - dns_options_allow_query | length > 0
       - dns_options_allow_query is iterable
+    quiet: yes
   when:
     - dns_options_allow_query is defined
 
@@ -73,6 +78,7 @@
   assert:
     that:
       - item | length > 0
+    quiet: yes
   when:
     - dns_pid_file is defined
 
@@ -81,6 +87,7 @@
     that:
       - dns_options_forwarders | length > 0
       - dns_options_forwarders is iterable
+    quiet: yes
   when:
     - dns_options_forwarders is defined
 
