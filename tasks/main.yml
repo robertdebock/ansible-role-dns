@@ -12,6 +12,7 @@
   file:
     path: "{{ item }}"
     state: directory
+    mode: "0750"
   loop:
     - "{{ dns_datadir }}"
     - "{{ dns_confdir }}"
@@ -37,6 +38,7 @@
     path: "{{ dns_confdir }}/rndc.key"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
+    mode: "0640"
 
 - name: get the hints/root file
   get_url:
@@ -52,6 +54,7 @@
   template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
+    mode: "0640"
   loop: "{{ dns_zones }}"
   when:
     - item.type is undefined or
@@ -66,6 +69,7 @@
     src: named.conf.j2
     dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
+    mode: "0640"
   notify:
     reload configuration
 
