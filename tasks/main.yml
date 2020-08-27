@@ -10,12 +10,20 @@
 
 - name: create directories
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: directory
-    mode: "0750"
+    mode: "{{ item.mode }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
   loop:
-    - "{{ dns_datadir }}"
-    - "{{ dns_confdir }}"
+    - path: "{{ dns_datadir }}"
+      mode: "0750"
+      owner: "{{ dns_owner }}"
+      group: "{{ dns_group }}"
+    - path: "{{ dns_confdir }}"
+      mode: "0755"
+      owner: root
+      group: root
 
 - name: create group
   group:
@@ -39,12 +47,17 @@
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
     mode: "0640"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
 
 - name: get the hints/root file
   get_url:
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
     validate_certs: "{{ dns_validate_certs }}"
+    mode: "0640"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
   when:
     - dns_caching_dns | bool
   notify:
@@ -55,6 +68,8 @@
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
     mode: "0640"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
   loop: "{{ dns_zones }}"
   when:
     - item.type is undefined or
@@ -70,6 +85,8 @@
     dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
     mode: "0640"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
   notify:
     reload configuration
 
