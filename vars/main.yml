@@ -56,4 +56,4 @@ _dns_service:
   Ubuntu-16: bind9
   Suse: named
 
-dns_service: "{{ _dns_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dns_service[ansible_distribution] | default(_dns_service[ansible_os_family] | default(_dns_service['default'))) }}"
+dns_service: "{{ _dns_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dns_service[ansible_distribution] | default(_dns_service[ansible_os_family] | default(_dns_service['default']))) }}"
