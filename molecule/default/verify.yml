@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     _nslookup_package:
