@@ -2,6 +2,7 @@
 # tasks file for dns
 - name: include assert.yml
   include_tasks: assert.yml
+  run_once: yes
 
 - name: install dns
   package:
