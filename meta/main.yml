@@ -39,6 +39,5 @@ galaxy_info:
     - system
     - resolving
     - named
-    - centos
 
 dependencies: []
