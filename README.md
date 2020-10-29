@@ -240,7 +240,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |alpine|all|
-|amazon|2018.03|
+|amazon|all|
 |el|7, 8|
 |debian|buster, bullseye|
 |fedora|all|
