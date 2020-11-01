@@ -1,3 +1,4 @@
 ---
-- robertdebock.bootstrap
-- robertdebock.core_dependencies
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.core_dependencies
