@@ -35,7 +35,7 @@
     that:
       - item.type is defined
       - item.type | length > 0
-      - item.type in ["forward"]
+      - item.type in [ "forward" ]
       - item.dns_zone_forwarders is defined
       - item.dns_zone_forwarders | length > 0
       - item.dns_zone_forwarders is iterable
