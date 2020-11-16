@@ -10,7 +10,6 @@
   assert:
     that:
       - dns_zones is defined
-      - dns_zones | length > 0
       - dns_zones is iterable
     quiet: yes
 
@@ -18,9 +17,7 @@
   assert:
     that:
       - item.name is defined
-      - item.name | length > 0
       - item.records is defined
-      - item.records | length > 0
       - item.records is iterable
     quiet: yes
   loop: "{{ dns_zones }}"
@@ -34,10 +31,8 @@
   assert:
     that:
       - item.type is defined
-      - item.type | length > 0
       - item.type in [ "forward" ]
       - item.dns_zone_forwarders is defined
-      - item.dns_zone_forwarders | length > 0
       - item.dns_zone_forwarders is iterable
     quiet: yes
   loop: "{{ dns_zones }}"
@@ -50,7 +45,6 @@
 - name: test if dns_allow_recursion is set correctly
   assert:
     that:
-      - dns_allow_recursion | length > 0
       - dns_allow_recursion is iterable
     quiet: yes
   when:
@@ -59,7 +53,6 @@
 - name: test if dns_options_listen_on is set correctly
   assert:
     that:
-      - dns_options_listen_on | length > 0
       - dns_options_listen_on is iterable
     quiet: yes
   when:
@@ -68,7 +61,6 @@
 - name: test if dns_options_allow_query is set correctly
   assert:
     that:
-      - dns_options_allow_query | length > 0
       - dns_options_allow_query is iterable
     quiet: yes
   when:
@@ -77,7 +69,6 @@
 - name: test if dns_pid_file is set correctly
   assert:
     that:
-      - item | length > 0
     quiet: yes
   when:
     - dns_pid_file is defined
@@ -85,7 +76,6 @@
 - name: test if dns_options_forwarders is set correctly
   assert:
     that:
-      - dns_options_forwarders | length > 0
       - dns_options_forwarders is iterable
     quiet: yes
   when:
@@ -95,7 +85,6 @@
   assert:
     that:
       - item is defined
-      - item | length > 0
     quiet: yes
   loop: "{{ dns_options_forwarders }}"
   when:
