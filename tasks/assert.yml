@@ -66,13 +66,6 @@
   when:
     - dns_options_allow_query is defined
 
-- name: test if dns_pid_file is set correctly
-  assert:
-    that:
-    quiet: yes
-  when:
-    - dns_pid_file is defined
-
 - name: test if dns_options_forwarders is set correctly
   assert:
     that:
