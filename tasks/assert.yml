@@ -25,7 +25,7 @@
     label: "{{ item.name }}"
   when:
     - dns_zones is defined
-    - item.type is not defined
+    - item.type is undefined
 
 - name: test if item in dns_zones is set correctly
   assert:
