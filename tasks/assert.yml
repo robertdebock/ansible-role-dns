@@ -3,7 +3,7 @@
   assert:
     that:
       - dns_caching_dns is defined
-      - dns_caching_dns | type_debug == "bool"
+      - dns_caching_dns is boolean
     quiet: yes
 
 - name: test if dns_zones is set correctly
