@@ -1,5 +1,6 @@
 ---
 # handlers file for dns
+
 - name: reload zones
   command: rndc reload
 
