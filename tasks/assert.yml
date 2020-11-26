@@ -1,4 +1,5 @@
 ---
+
 - name: test if dns_caching_dns is set correctly
   assert:
     that:
