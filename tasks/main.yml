@@ -104,6 +104,7 @@
       loop:
         - journalctl --unit={{ dns_service }} --no-pager
         - systemctl status {{ dns_service }}
+      failed_when: no
     - name: show information
       debug:
         msg: "{{ item }}"
