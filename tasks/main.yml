@@ -102,8 +102,8 @@
       command: "{{ item }}"
       register: my_service_collect_information
       loop:
-        - journalxtl -xe
-        - systemctl status my_service
+        - journalctl -xe
+        - systemctl status {{ dns_service }}
     - name: show information
       debug:
         msg: "{{ item }}"
