@@ -91,7 +91,20 @@
     reload configuration
 
 - name: start and enable dns
-  service:
-    name: "{{ dns_service }}"
-    state: started
-    enabled: yes
+  block:
+    - name: start and enable
+      service:
+        name: "{{ dns_service }}"
+        state: started
+        enabled: yes
+  rescue:
+    - name: collect information
+      command: "{{ item }}"
+      register: my_service_collect_information
+      loop:
+        - journalxtl -xe
+        - systemctl status my_service
+    - name: show information
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ my_service_collect_information.results }}"
