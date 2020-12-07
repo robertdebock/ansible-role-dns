@@ -102,7 +102,7 @@
       command: "{{ item }}"
       register: my_service_collect_information
       loop:
-        - journalctl -xe
+        - journalctl --unit={{ dns_service }} --no-pager
         - systemctl status {{ dns_service }}
     - name: show information
       debug:
