@@ -2,9 +2,9 @@
 
 Install and configure dns on your system.
 
-|Travis|GitHub|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-dns.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-dns)|[![github](https://github.com/robertdebock/ansible-role-dns/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dns/actions)|[![quality](https://img.shields.io/ansible/quality/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![downloads](https://img.shields.io/ansible/role/d/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dns.svg)](https://github.com/robertdebock/ansible-role-dns/releases/)|
+|Travis|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-dns.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-dns)|[![github](https://github.com/robertdebock/ansible-role-dns/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dns/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-dns/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-dns)|[![quality](https://img.shields.io/ansible/quality/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![downloads](https://img.shields.io/ansible/role/d/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dns.svg)](https://github.com/robertdebock/ansible-role-dns/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
