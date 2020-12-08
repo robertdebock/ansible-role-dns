@@ -94,12 +94,19 @@
     - reload configuration
 
 - name: place systemd override
-  copy:
-    src: override.conf
-    dest: /etc/systemd/system/{{ dns_service }}.service.d/override.conf
-    owner: root
-    group: root
-    mode: "0644"
+  block:
+    - name: create /etc/systemd/system/named.service.d
+      file:
+        path: /etc/systemd/system/named.service.d
+        state: directory
+        mode: "0755"
+    - name: place override.conf
+      copy:
+        src: override.conf
+        dest: /etc/systemd/system/{{ dns_service }}.service.d/override.conf
+        owner: root
+        group: root
+        mode: "0644"
   when:
     - ansible_service_mgr == "systemd"
 
