@@ -63,7 +63,7 @@
   when:
     - dns_caching_dns | bool
   notify:
-    reload zones
+    - reload zones
 
 - name: create zone files
   template:
@@ -79,7 +79,7 @@
     - item.type is undefined or
       item.type == "master"
   notify:
-    reload zones
+    - reload zones
 
 - name: add zones to configuration
   template:
@@ -90,24 +90,10 @@
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
   notify:
-    reload configuration
+    - reload configuration
 
 - name: start and enable dns
-  block:
-    - name: start and enable
-      service:
-        name: "{{ dns_service }}"
-        state: started
-        enabled: yes
-  rescue:
-    - name: collect information
-      command: "{{ item }}"
-      register: my_service_collect_information
-      loop:
-        - journalctl --unit={{ dns_service }} --no-pager
-        - systemctl status {{ dns_service }}
-      failed_when: no
-    - name: show information
-      debug:
-        msg: "{{ item }}"
-      loop: "{{ my_service_collect_information.results }}"
+  service:
+    name: "{{ dns_service }}"
+    state: started
+    enabled: yes
