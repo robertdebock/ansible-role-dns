@@ -1,8 +1,9 @@
 ---
 image: robertdebock/github-action-molecule:2.6.6
 
-services:
-  - docker:dind
+# I guess this service is not required, we're running another image.
+# services:
+#   - docker:dind
 
 variables:
   DOCKER_HOST: "tcp://docker:2375"
@@ -10,7 +11,7 @@ variables:
 
 molecule:
   script:
-    - image=${image} tag=${tag} molecule test
+    - if [ -f tox.ini ] ; then image=${image} tag=${tag} tox ; else image=${image} tag=${tag} molecule test ; fi
   rules:
     - if: $CI_COMMIT_TAG == null
   retry: 2

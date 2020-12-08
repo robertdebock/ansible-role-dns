@@ -89,6 +89,7 @@
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
+    backup: yes
   notify:
     - reload configuration
 
