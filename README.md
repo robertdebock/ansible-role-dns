@@ -142,8 +142,8 @@ dns_options_listen_on_v6:
 #   - none
 #   - 172.16.0.1
 
-# An optional setting to congifure the path where the pid file will be created.
-# dns_pid_file: /var/run/named/named.pid
+# An optional setting to configure the path where the pid file will be created.
+dns_pid_file: /var/run/named/named.pid
 
 # An optional setting to forward traffic to other DNS servers.
 # dns_options_forwarders:
