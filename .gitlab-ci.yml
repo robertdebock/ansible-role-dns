@@ -1,13 +1,22 @@
 ---
-image: robertdebock/github-action-molecule:2.6.6
+image: docker:stable-dind
 
-# I guess this service is not required, we're running another image.
-# services:
-#   - docker:dind
+services:
+  - docker:dind
 
 variables:
-  DOCKER_HOST: "tcp://docker:2375"
   PY_COLORS: 1
+
+before_script:
+  - apk add --no-cache
+    python3 python3-dev py3-pip gcc git curl build-base
+    autoconf automake py3-cryptography linux-headers
+    musl-dev libffi-dev openssl-dev openssh
+  - docker info
+  - python3 --version
+  - python3 -m pip install ansible molecule[docker]
+  - ansible --version
+  - molecule --version
 
 molecule:
   script:
