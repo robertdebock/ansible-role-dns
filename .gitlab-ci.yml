@@ -6,7 +6,7 @@ services:
 
 variables:
   PY_COLORS: 1
-  TOXENF: py{38}-ansible-{previous,current}
+  TOXENV: py{38}-ansible-{previous,current}
 
 before_script:
   - apk add --no-cache
