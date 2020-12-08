@@ -19,7 +19,7 @@
     group: "{{ item.group }}"
   loop:
     - path: "{{ dns_datadir }}"
-      mode: "0750"
+      mode: "1770"
       owner: "{{ dns_owner }}"
       group: "{{ dns_group }}"
     - path: "{{ dns_confdir }}"

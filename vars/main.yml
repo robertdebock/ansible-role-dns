@@ -43,6 +43,7 @@ dns_group: "{{ _dns_group[ansible_os_family] | default(_dns_group['default']) }}
 _dns_owner:
   default: named
   Debian: bind
+  RedHat: root
 
 dns_owner: "{{ _dns_owner[ansible_os_family] | default(_dns_owner['default']) }}"
 
