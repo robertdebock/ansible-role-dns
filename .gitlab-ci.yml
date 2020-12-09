@@ -17,6 +17,8 @@ before_script:
 
 molecule:
   script:
+    - docker version
+    - docker run hello-world
     - if [ -f tox.ini ] ; then image=${image} tag=${tag} tox ; else image=${image} tag=${tag} molecule test ; fi
   rules:
     - if: $CI_COMMIT_TAG == null
