@@ -95,9 +95,9 @@
 
 - name: place systemd override
   block:
-    - name: create /etc/systemd/system/named.service.d
+    - name: create /etc/systemd/system/{{ dns_service }}.service.d
       file:
-        path: /etc/systemd/system/named.service.d
+        path: /etc/systemd/system/{{ dns_service }}.service.d
         state: directory
         mode: "0755"
     - name: place override.conf
