@@ -18,6 +18,14 @@
       package:
         name: "{{ nslookup_package }}"
         state: present
+      notify:
+        - uninstall nslookup
 
     - name: test resolving www.example.com
       command: nslookup www.example.com 127.0.0.1
+
+  handlers:
+    - name: uninstall nslookup
+      package:
+        name: "{{ nslookup_package }}"
+        state: absent
