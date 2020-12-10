@@ -107,6 +107,11 @@
         owner: root
         group: root
         mode: "0644"
+      notify:
+        - systemctl daemon-reload
+        - restart dns
+    - name: flush handlers
+      meta: flush_handlers
   when:
     - ansible_service_mgr == "systemd"
 
