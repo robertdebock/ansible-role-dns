@@ -13,23 +13,20 @@ galaxy_info:
         - all
     - name: Amazon
       versions:
-        - all
+        - Candidate
     - name: EL
       versions:
         - 7
         - 8
     - name: Debian
       versions:
-        - buster
-        - bullseye
+        - all
     - name: Fedora
       versions:
         - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
-        - xenial
+        - all
 
   galaxy_tags:
     - bind

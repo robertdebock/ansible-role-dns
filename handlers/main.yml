@@ -8,3 +8,4 @@
 
 - name: rndc reload
   command: rndc reload
+  failed_when: no
