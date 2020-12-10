@@ -1,17 +1,10 @@
 ---
 # handlers file for dns
 
-- name: systemctl daemon-reload
-  systemd:
-    daemon_reload: yes
-
 - name: restart dns
   service:
     name: "{{ dns_service }}"
     state: restarted
 
-- name: reload zones
-  command: rndc reload
-
-- name: reload configuration
+- name: rndc reload
   command: rndc reload

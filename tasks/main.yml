@@ -63,7 +63,7 @@
   when:
     - dns_caching_dns | bool
   notify:
-    - reload zones
+    - rndc reload
 
 - name: create zone files
   template:
@@ -79,7 +79,7 @@
     - item.type is undefined or
       item.type == "master"
   notify:
-    - reload zones
+    - rndc reload
 
 - name: add zones to configuration
   template:
@@ -91,7 +91,7 @@
     group: "{{ dns_group }}"
     backup: yes
   notify:
-    - reload configuration
+    - restart dns
 
 - name: place systemd override
   block:
@@ -107,11 +107,10 @@
         owner: root
         group: root
         mode: "0644"
-      notify:
-        - systemctl daemon-reload
-        - restart dns
-    - name: flush handlers
-      meta: flush_handlers
+    - name: systemctl daemon-reload
+      systemd:
+        daemon_reload: yes
+      changed_when: no
   when:
     - ansible_service_mgr == "systemd"
 
