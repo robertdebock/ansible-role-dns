@@ -6,12 +6,12 @@ options {
 {% endif %}
   dnssec-validation auto;
   auth-nxdomain no;
-  listen-on {
+  listen-on port {{ dns_port }} {
 {% for ipv4 in dns_options_listen_on %}
     {{ ipv4 }};
 {% endfor %}
   };
-  listen-on-v6 {
+  listen-on-v6 port {{ dns_port }} {
 {% for ipv6 in dns_options_listen_on_v6 %}
     {{ ipv6 }};
 {% endfor %}
@@ -26,7 +26,7 @@ options {
 {% if dns_allow_recursion is defined %}
   allow-recursion {
 {% for acl in dns_allow_recursion %}
-   {{ acl }}; 
+   {{ acl }};
 {% endfor %}
   };
 {% endif %}

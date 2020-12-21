@@ -18,6 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.dns
+      dns_port: 5353
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -41,6 +42,9 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for dns
+
+# The port to listen on.
+dns_port: 53
 
 # Should the DNS server be a caching DNS server?
 dns_caching_dns: yes

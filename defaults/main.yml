@@ -1,6 +1,9 @@
 ---
 # defaults file for dns
 
+# The port to listen on.
+dns_port: 53
+
 # Should the DNS server be a caching DNS server?
 dns_caching_dns: yes
 
