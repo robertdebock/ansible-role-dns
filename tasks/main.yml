@@ -7,12 +7,12 @@
   delegate_to: localhost
 
 - name: install dns
-  package:
+  ansible.builtin.package:
     name: "{{ dns_packages }}"
     state: present
 
 - name: create directories
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
     mode: "{{ item.mode }}"
@@ -31,12 +31,12 @@
     label: "{{ item.path }}"
 
 - name: create group
-  group:
+  ansible.builtin.group:
     name: "{{ dns_group }}"
     state: present
 
 - name: create user
-  user:
+  ansible.builtin.user:
     name: "{{ dns_owner }}"
     state: present
     system: yes
@@ -47,14 +47,14 @@
     creates: "{{ dns_confdir }}/rndc.key"
 
 - name: set permissions on rndc key file
-  file:
+  ansible.builtin.file:
     path: "{{ dns_confdir }}/rndc.key"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
     mode: "0640"
 
 - name: get the hints/root file
-  get_url:
+  ansible.builtin.get_url:
     url: https://www.internic.net/domain/named.root
     dest: "{{ dns_datadir }}/named.root"
     validate_certs: "{{ dns_validate_certs }}"
@@ -67,7 +67,7 @@
     - rndc reload
 
 - name: create zone files
-  template:
+  ansible.builtin.template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
     mode: "0640"
@@ -83,7 +83,7 @@
     - rndc reload
 
 - name: add zones to configuration
-  template:
+  ansible.builtin.template:
     src: named.conf.j2
     dest: "{{ dns_confdir }}/named.conf"
     validate: named-checkconf -zj %s
@@ -116,7 +116,7 @@
     - ansible_service_mgr == "systemd"
 
 - name: start and enable dns
-  service:
+  ansible.builtin.service:
     name: "{{ dns_service }}"
     state: started
     enabled: yes
