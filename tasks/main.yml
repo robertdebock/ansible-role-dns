@@ -42,7 +42,7 @@
     system: yes
 
 - name: generate rndc key
-  command: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
+  ansible.builtin.command: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
   args:
     creates: "{{ dns_confdir }}/rndc.key"
 
