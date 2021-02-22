@@ -97,19 +97,19 @@
 - name: place systemd override
   block:
     - name: create /etc/systemd/system/{{ dns_service }}.service.d
-      file:
+      ansible.builtin.file:
         path: /etc/systemd/system/{{ dns_service }}.service.d
         state: directory
         mode: "0755"
     - name: place override.conf
-      copy:
+      ansible.builtin.copy:
         src: override.conf
         dest: /etc/systemd/system/{{ dns_service }}.service.d/override.conf
         owner: root
         group: root
         mode: "0644"
     - name: systemctl daemon-reload
-      systemd:
+      ansible.builtin.systemd:
         daemon_reload: yes
       changed_when: no
   when:
