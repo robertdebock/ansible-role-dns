@@ -15,7 +15,7 @@
 
   tasks:
     - name: install nslookup
-      package:
+      ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: present
       notify:
@@ -26,6 +26,6 @@
 
   handlers:
     - name: uninstall nslookup
-      package:
+      ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: absent
