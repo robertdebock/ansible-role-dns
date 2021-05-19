@@ -42,8 +42,8 @@
     system: yes
 
 - name: generate rndc key
-  ansible.builtin.command: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
-  args:
+  ansible.builtin.command:
+    cmd: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
     creates: "{{ dns_confdir }}/rndc.key"
 
 - name: set permissions on rndc key file
