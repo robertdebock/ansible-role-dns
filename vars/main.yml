@@ -43,16 +43,18 @@ dns_group: "{{ _dns_group[ansible_os_family] | default(_dns_group['default']) }}
 _dns_owner:
   default: named
   Debian: bind
-  RedHat: root
+  RedHat: &RHEL root
+  Rocky: *RHEL
 
 dns_owner: "{{ _dns_owner[ansible_os_family] | default(_dns_owner['default']) }}"
 
 _dns_service:
   default: bind
   Alpine: named
-  RedHat: named
   Debian-10: bind9
   Debian: named
+  RedHat: &RHEL named
+  Rocky: *RHEL
   Ubuntu-18: bind9
   Ubuntu-16: bind9
   Suse: named
