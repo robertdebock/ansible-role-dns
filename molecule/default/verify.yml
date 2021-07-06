@@ -9,7 +9,8 @@
       Alpine: bind-tools
       Archlinux: dnsutils
       Debian: dnsutils
-      RedHat: bind-utils
+      RedHat: &redhat_nslookup_package bind-utils
+      Rocky: *redhat_nslookup_package
 
     nslookup_package: "{{ _nslookup_package[ansible_os_family] }}"
 
