@@ -2,3 +2,5 @@
 roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.core_dependencies
+collections:
+  - name: community.general
