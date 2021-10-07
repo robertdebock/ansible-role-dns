@@ -37,7 +37,7 @@ jobs:
             tag: "latest"
           - image: "amazonlinux"
             tag: "latest"
-          - image: "rockylinux"
+          - image: "enterpriselinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"
