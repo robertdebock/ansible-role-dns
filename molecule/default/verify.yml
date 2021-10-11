@@ -27,6 +27,7 @@
         cmd: nslookup -port=5353 www.example.com 127.0.0.1
 
   handlers:
+
     - name: uninstall nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"

@@ -21,7 +21,7 @@
       - dns_zones is iterable
     quiet: yes
 
-- name: test if item in dns_zones is set correctly
+- name: test if item in dns_zones is set correctly for undefined types
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -36,7 +36,7 @@
     - dns_zones is defined
     - item.type is undefined
 
-- name: test if item in dns_zones is set correctly
+- name: test if item in dns_zones is set correctly for defined types
   ansible.builtin.assert:
     that:
       - item.type is defined
@@ -70,7 +70,7 @@
   when:
     - dns_options_listen_on is defined
 
-- name: test if item in dns_options_listen_on is set correctly
+- name: test if item in dns_options_listen_on is set correctly for strings
   ansible.builtin.assert:
     that:
       - item in [ "any", "none" ]
