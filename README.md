@@ -63,28 +63,28 @@ dns_zones:
         type: NS
         value: localhost.
       - name: "@"
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: "@"
         type: AAAA
-        value: ::1
+        value: "::1"
 
-  - name: 127.in-addr.arpa
+  - name: "127.in-addr.arpa"
     ttl: 604800
     records:
       - name: "@"
         type: NS
         value: localhost.
-      - name: 1.0.0
+      - name: "1.0.0"
         type: PTR
         value: localhost.
 
-  - name: 0.in-addr.arpa
+  - name: "0.in-addr.arpa"
     records:
       - name: "@"
         type: NS
         value: localhost.
 
-  - name: 255.in-addr.arpa
+  - name: "255.in-addr.arpa"
     records:
       - name: "@"
         type: NS
@@ -102,25 +102,25 @@ dns_zones:
         priority: 20
     records:
       - name: dns1
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: dns2
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: www
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: dns1
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: dns2
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: mail1
-        value: 127.0.0.1
+        value: "127.0.0.1"
       - name: mail2
-        value: 127.0.0.1
+        value: "127.0.0.1"
 
   - name: forwarded.example.com
     type: forward
     dns_zone_forwarders:
-      - 1.1.1.1
-      - 8.8.8.8
+      - "1.1.1.1"
+      - "8.8.8.8"
 
 # An optional list of acls to allow recursion. ("any" and "none" are always available.)
 dns_allow_recursion:
@@ -138,21 +138,21 @@ dns_options_listen_on_v6:
 # Default: "any"
 # dns_options_allow_query:
 #  - any
-#  - 127.0.0.1
+#  - "127.0.0.1"
 
 # An optional list of IP which are allowed to run a AXFR query. ("any" and "none" are always available.)
 # Default: "none"
 # dns_options_allow_transfer:
 #   - none
-#   - 172.16.0.1
+#   - "172.16.0.1"
 
 # An optional setting to configure the path where the pid file will be created.
 dns_pid_file: /run/named/named.pid
 
 # An optional setting to forward traffic to other DNS servers.
 # dns_options_forwarders:
-#   - 1.1.1.1
-#   - 8.8.8.8
+#   - "1.1.1.1"
+#   - "8.8.8.8"
 
 # Another example thanks to @blaisep.
 # dns_zones:
@@ -167,26 +167,26 @@ dns_pid_file: /run/named/named.pid
 #         priority: 20
 #     records:
 #       - name: ns
-#         value: 192.168.254.27
+#         value: "192.168.254.27"
 #       - name: git
-#         value: 192.168.254.19
+#         value: "192.168.254.19"
 #       - name: dl380
-#         value: 192.168.254.27
+#         value: "192.168.254.27"
 #       - name: mail1
-#         value: 192.168.123.123
+#         value: "192.168.123.123"
 #       - name: mail2
-#         value: 192.168.123.123
+#         value: "192.168.123.123"
 #   - name: forwarded.lab.controlplane.info
 #     ns:
 #       - name: forwarded.lab.controlplane.info.
 #     records:
 #       - name: ns
-#         value: 192.168.254.27
+#         value: "192.168.254.27"
 #       - name: "@"
-#         value: 192.168.123.123
+#         value: "192.168.123.123"
 #     dns_zone_forwarders:
-#       - 9.9.9.9
-#       - 8.8.8.8
+#       - "9.9.9.9"
+#       - "8.8.8.8"
 ```
 
 ## [Requirements](#requirements)
