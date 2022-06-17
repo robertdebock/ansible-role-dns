@@ -62,7 +62,7 @@
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
   when:
-    - dns_caching_dns | bool
+    - dns_caching_dns
   notify:
     - rndc reload
 
