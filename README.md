@@ -237,6 +237,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

@@ -55,7 +55,7 @@
 
 - name: get the hints/root file
   ansible.builtin.get_url:
-    url: https://www.internic.net/domain/named.root
+    url: "https://www.internic.net/domain/named.root"
     dest: "{{ dns_datadir }}/named.root"
     validate_certs: "{{ dns_validate_certs }}"
     mode: "0640"
