@@ -34,7 +34,7 @@ jobs:
           - image: "amazonlinux"
             tag: "latest"
           - image: "enterpriselinux"
-            tag: "latest"
+            tag: "8"
           - image: "debian"
             tag: "latest"
           - image: "debian"
