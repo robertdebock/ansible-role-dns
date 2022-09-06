@@ -1,17 +1,17 @@
 ---
 # tasks file for dns
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install dns
+- name: Install dns
   ansible.builtin.package:
     name: "{{ dns_packages }}"
     state: present
 
-- name: create directories
+- name: Create directories
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
@@ -30,30 +30,30 @@
   loop_control:
     label: "{{ item.path }}"
 
-- name: create group
+- name: Create group
   ansible.builtin.group:
     name: "{{ dns_group }}"
     state: present
 
-- name: create user
+- name: Create user
   ansible.builtin.user:
     name: "{{ dns_owner }}"
     state: present
     system: yes
 
-- name: generate rndc key
+- name: Generate rndc key
   ansible.builtin.command:
     cmd: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
     creates: "{{ dns_confdir }}/rndc.key"
 
-- name: set permissions on rndc key file
+- name: Set permissions on rndc key file
   ansible.builtin.file:
     path: "{{ dns_confdir }}/rndc.key"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
     mode: "0640"
 
-- name: get the hints/root file
+- name: Get the hints/root file
   ansible.builtin.get_url:
     url: "https://www.internic.net/domain/named.root"
     dest: "{{ dns_datadir }}/named.root"
@@ -64,9 +64,9 @@
   when:
     - dns_caching_dns
   notify:
-    - rndc reload
+    - Rndc reload
 
-- name: create zone files
+- name: Create zone files
   ansible.builtin.template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.conf"
@@ -80,9 +80,9 @@
     - item.type is undefined or
       item.type == "master"
   notify:
-    - rndc reload
+    - Rndc reload
 
-- name: add zones to configuration
+- name: Add zones to configuration
   ansible.builtin.template:
     src: named.conf.j2
     dest: "{{ dns_confdir }}/named.conf"
@@ -92,17 +92,17 @@
     group: "{{ dns_group }}"
     backup: yes
   notify:
-    - restart dns
+    - Restart dns
 
-- name: place systemd override
+- name: Place systemd override
   block:
-    - name: create /etc/systemd/system/{{ dns_service }}.service.d
+    - name: Create /etc/systemd/system/{{ dns_service }}.service.d
       ansible.builtin.file:
         path: /etc/systemd/system/{{ dns_service }}.service.d
         state: directory
         mode: "0755"
 
-    - name: place override.conf
+    - name: Place override.conf
       ansible.builtin.copy:
         src: override.conf
         dest: /etc/systemd/system/{{ dns_service }}.service.d/override.conf
@@ -110,14 +110,14 @@
         group: root
         mode: "0644"
 
-    - name: systemctl daemon-reload
+    - name: Systemctl daemon-reload
       ansible.builtin.systemd:
         daemon_reload: yes
       changed_when: no
   when:
     - ansible_service_mgr == "systemd"
 
-- name: start and enable dns
+- name: Start and enable dns
   ansible.builtin.service:
     name: "{{ dns_service }}"
     state: started
