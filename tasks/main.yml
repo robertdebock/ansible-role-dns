@@ -95,8 +95,10 @@
     - Restart dns
 
 - name: Place systemd override
+  when:
+    - ansible_service_mgr == "systemd"
   block:
-    - name: Create /etc/systemd/system/{{ dns_service }}.service.d
+    - name: Create service.d {{ dns_service }}
       ansible.builtin.file:
         path: /etc/systemd/system/{{ dns_service }}.service.d
         state: directory
@@ -114,8 +116,6 @@
       ansible.builtin.systemd:
         daemon_reload: yes
       changed_when: no
-  when:
-    - ansible_service_mgr == "systemd"
 
 - name: Start and enable dns
   ansible.builtin.service:
