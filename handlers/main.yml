@@ -10,3 +10,4 @@
   ansible.builtin.command:
     cmd: rndc reload
   failed_when: no
+  changed_when: yes
