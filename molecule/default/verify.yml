@@ -15,20 +15,20 @@
     nslookup_package: "{{ _nslookup_package[ansible_os_family] }}"
 
   tasks:
-    - name: install nslookup
+    - name: Install nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: present
       notify:
         - uninstall nslookup
 
-    - name: test resolving www.example.com
+    - name: Test resolving www.example.com
       ansible.builtin.command:
         cmd: nslookup -port=5353 www.example.com 127.0.0.1
 
   handlers:
 
-    - name: uninstall nslookup
+    - name: Uninstall nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: absent
