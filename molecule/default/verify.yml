@@ -20,14 +20,13 @@
         name: "{{ nslookup_package }}"
         state: present
       notify:
-        - uninstall nslookup
+        - Uninstall nslookup
 
     - name: Test resolving www.example.com
       ansible.builtin.command:
         cmd: nslookup -port=5353 www.example.com 127.0.0.1
 
   handlers:
-
     - name: Uninstall nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
