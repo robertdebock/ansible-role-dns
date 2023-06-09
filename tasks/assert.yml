@@ -26,6 +26,7 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.records is defined
       - item.records is iterable
     quiet: yes
@@ -51,8 +52,10 @@
   when:
     - dns_zones is defined
     - dns_zones is string
+    - dns_zones is not none
     - item.type is defined
     - item.type is string
+    - item.type is not none
 
 - name: assert | Test if dns_allow_recursion is set correctly
   ansible.builtin.assert:
@@ -139,6 +142,7 @@
     that:
       - item is defined
       - item is string
+      - item is not none
     quiet: yes
   loop: "{{ dns_options_forwarders }}"
   when:
