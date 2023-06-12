@@ -25,6 +25,7 @@
     - name: Test resolving www.example.com
       ansible.builtin.command:
         cmd: nslookup -port=5353 www.example.com 127.0.0.1
+      chagned_when: no
 
   handlers:
     - name: Uninstall nslookup
