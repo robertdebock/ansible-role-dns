@@ -42,7 +42,7 @@
     that:
       - item.type is defined
       - item.type is string
-      - item.type in [ "forward" ]
+      - item.type in [ "forward", "slave" ]
       - item.dns_zone_forwarders is defined
       - item.dns_zone_forwarders is iterable
     quiet: yes
@@ -56,6 +56,20 @@
     - item.type is defined
     - item.type is string
     - item.type is not none
+
+- name: assert | Test if item in dns_zones is set correctly for slaves
+  ansible.builtin.assert:
+    that:
+      - item.masters is defined
+      - item.masters is iterable
+      - item.masters | length > 0
+  loop: "{{ dns_zones }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - dns_zones is defined
+    - item.type is defined
+    - item.type == "slave"
 
 - name: assert | Test if dns_allow_recursion is set correctly
   ansible.builtin.assert:

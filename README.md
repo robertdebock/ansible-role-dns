@@ -125,6 +125,12 @@ dns_zones:
       - "1.1.1.1"
       - "8.8.8.8"
 
+  - name: slave.example.com
+    type: slave
+    masters:
+      - "127.0.0.1"
+      - "127.0.0.2"
+
 # An optional list of acls to allow recursion. ("any" and "none" are always available.)
 dns_allow_recursion:
   - none

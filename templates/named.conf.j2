@@ -66,6 +66,11 @@ zone "{{ zone.name }}" {
 {% for zone_forwarder in zone.dns_zone_forwarders %}
     {{ zone_forwarder }};
 {% endfor %}
+{% if zone.masters is defined %}
+{% for master in zone.masters %}
+    { {{ master | join(";") }}; };
+{% endfor %}
+{% endif %}
   };
 {% endif %}
 };
