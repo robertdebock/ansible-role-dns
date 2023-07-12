@@ -60,3 +60,39 @@ _dns_service:
   Suse: named
 
 dns_service: "{{ _dns_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dns_service[ansible_distribution] | default(_dns_service[ansible_os_family] | default(_dns_service['default'] ))) }}"
+
+# Some older distributions use "master" instead of "primary". This map sets the correct name used in named.conf
+_dns_primary_indicator:
+  default: primary
+  RedHat:
+    "8": master
+  Rocky:
+    "8": master
+  Ubuntu:
+    "18": master
+    "20": master
+dns_primary_indicator: "{{ _dns_primary_indicator[ansible_distribution][ansible_distribution_major_version] | default(_dns_primary_indicator['default']) }}"
+
+# Some older distributions use "slave" instead of "secondary". This map sets the correct name used in named.conf
+_dns_secondary_indicator:
+  default: secondary
+  RedHat:
+    "8": slave
+  Rocky:
+    "8": slave
+  Ubuntu:
+    "18": slave
+    "20": slave
+dns_secondary_indicator: "{{ _dns_secondary_indicator[ansible_distribution][ansible_distribution_major_version] | default(_dns_secondary_indicator['default']) }}"
+
+# Some older distributions use "masters" instead of "primaries". This map sets the correct name used in named.conf
+_dns_primaries_indicator:
+  default: primaries
+  RedHat:
+    "8": masters
+  Rocky:
+    "8": masters
+  Ubuntu:
+    "18": masters
+    "20": masters
+dns_primaries_indicator: "{{ _dns_primaries_indicator[ansible_distribution][ansible_distribution_major_version] | default(_dns_primaries_indicator['default']) }}"

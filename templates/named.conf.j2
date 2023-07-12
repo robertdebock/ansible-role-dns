@@ -57,7 +57,13 @@ zone "." {
 
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
+{% if zone.type == "primary" %}
+  type {{ dns_primary_indicator }};
+{% elif zone.type == "secondary" %}
+  type {{ dns_secondary_indicator }};
+{% else %}
   type {{ zone.type }};
+{% endif %}
 {% if zone.type != "forward" %}
   file "{{ dns_datadir }}/{{ zone.name }}.db";
 {% endif %}
@@ -69,7 +75,7 @@ zone "{{ zone.name }}" {
   };
 {% endif %}
 {% if zone.type == "secondary" %}
-  primaries {
+  {{ dns_primaries_indicator }} {
 {% for primary in zone.primaries %}
     {{ primary }};
 {% endfor %}
