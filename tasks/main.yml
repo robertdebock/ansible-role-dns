@@ -70,6 +70,7 @@
   ansible.builtin.template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.db"
+    validate: named-checkzone {{ item.name }} {{ dns_datadir }}/{{ item.name }}.db
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"

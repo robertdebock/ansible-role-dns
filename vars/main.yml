@@ -4,11 +4,13 @@
 _dns_packages:
   default:
     - bind
+    - bind-utils
   Alpine:
     - bind
     - bind-tools
   Debian:
     - bind9
+    - bind9utils
 
 dns_packages: "{{ _dns_packages[ansible_os_family] | default(_dns_packages['default']) }}"
 
