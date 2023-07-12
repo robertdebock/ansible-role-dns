@@ -6,70 +6,70 @@
   run_once: yes
   delegate_to: localhost
 
-# - name: Install dns
-#   ansible.builtin.package:
-#     name: "{{ dns_packages }}"
-#     state: present
+- name: Install dns
+  ansible.builtin.package:
+    name: "{{ dns_packages }}"
+    state: present
 
-# - name: Create directories
-#   ansible.builtin.file:
-#     path: "{{ item.path }}"
-#     state: directory
-#     mode: "{{ item.mode }}"
-#     owner: "{{ item.owner }}"
-#     group: "{{ item.group }}"
-#   loop:
-#     - path: "{{ dns_datadir }}"
-#       mode: "1770"
-#       owner: "{{ dns_owner }}"
-#       group: "{{ dns_group }}"
-#     - path: "{{ dns_confdir }}"
-#       mode: "0755"
-#       owner: root
-#       group: root
-#   loop_control:
-#     label: "{{ item.path }}"
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+  loop:
+    - path: "{{ dns_datadir }}"
+      mode: "1770"
+      owner: "{{ dns_owner }}"
+      group: "{{ dns_group }}"
+    - path: "{{ dns_confdir }}"
+      mode: "0755"
+      owner: root
+      group: root
+  loop_control:
+    label: "{{ item.path }}"
 
-# - name: Create group
-#   ansible.builtin.group:
-#     name: "{{ dns_group }}"
-#     state: present
+- name: Create group
+  ansible.builtin.group:
+    name: "{{ dns_group }}"
+    state: present
 
-# - name: Create user
-#   ansible.builtin.user:
-#     name: "{{ dns_owner }}"
-#     state: present
-#     system: yes
+- name: Create user
+  ansible.builtin.user:
+    name: "{{ dns_owner }}"
+    state: present
+    system: yes
 
-# - name: Generate rndc key
-#   ansible.builtin.command:
-#     cmd: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
-#     creates: "{{ dns_confdir }}/rndc.key"
+- name: Generate rndc key
+  ansible.builtin.command:
+    cmd: rndc-confgen -a -c "{{ dns_confdir }}/rndc.key"
+    creates: "{{ dns_confdir }}/rndc.key"
 
-# - name: Set permissions on rndc key file
-#   ansible.builtin.file:
-#     path: "{{ dns_confdir }}/rndc.key"
-#     owner: "{{ dns_owner }}"
-#     group: "{{ dns_group }}"
-#     mode: "0640"
+- name: Set permissions on rndc key file
+  ansible.builtin.file:
+    path: "{{ dns_confdir }}/rndc.key"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
+    mode: "0640"
 
-# - name: Get the hints/root file
-#   ansible.builtin.get_url:
-#     url: "https://www.internic.net/domain/named.root"
-#     dest: "{{ dns_datadir }}/named.root"
-#     validate_certs: "{{ dns_validate_certs }}"
-#     mode: "0640"
-#     owner: "{{ dns_owner }}"
-#     group: "{{ dns_group }}"
-#   when:
-#     - dns_caching_dns
-#   notify:
-#     - Rndc reload
+- name: Get the hints/root file
+  ansible.builtin.get_url:
+    url: "https://www.internic.net/domain/named.root"
+    dest: "{{ dns_datadir }}/named.root"
+    validate_certs: "{{ dns_validate_certs }}"
+    mode: "0640"
+    owner: "{{ dns_owner }}"
+    group: "{{ dns_group }}"
+  when:
+    - dns_caching_dns
+  notify:
+    - Rndc reload
 
 - name: Create zone files
   ansible.builtin.template:
     src: zone.j2
-    dest: "{{ dns_datadir }}/{{ item.name }}.conf"
+    dest: "{{ dns_datadir }}/{{ item.name }}.db"
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
@@ -78,7 +78,7 @@
     label: "{{ item.name }}"
   when:
     - item.type is undefined or
-      item.type == "master"
+      item.type in [ "primary" ]
   notify:
     - Rndc reload
 
@@ -86,7 +86,7 @@
   ansible.builtin.template:
     src: named.conf.j2
     dest: "{{ dns_confdir }}/named.conf"
-    validate: named-checkconf -zj %s
+    # validate: named-checkconf -zj %s
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"

@@ -7,18 +7,18 @@ options {
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on port {{ dns_port }} {
-{% for ipv4 in dns_options_listen_on %}
+{% for ipv4 in dns_listen_on %}
     {{ ipv4 }};
 {% endfor %}
   };
   listen-on-v6 port {{ dns_port }} {
-{% for ipv6 in dns_options_listen_on_v6 %}
+{% for ipv6 in dns_listen_on_v6 %}
     {{ ipv6 }};
 {% endfor %}
   };
-{% if dns_options_allow_query is defined %}
+{% if dns_allow_query is defined %}
   allow-query {
-{% for ip in dns_options_allow_query %}
+{% for ip in dns_allow_query %}
     {{ ip }};
 {% endfor %}
   };
@@ -31,18 +31,18 @@ options {
   };
 {% endif %}
   allow-transfer {
-{% if dns_options_allow_transfer is defined %}
-{% for ip in dns_options_allow_transfer %}
+{% if dns_allow_transfer is defined %}
+{% for ip in dns_allow_transfer %}
     {{ ip }};
 {% endfor %}
 {% else %}
     none;
 {% endif %}
   };
-{% if dns_options_forwarders is defined %}
+{% if forwarders is defined %}
   forwarders {
-{% for options_forwarder in dns_options_forwarders %}
-    {{ options_forwarder }};
+{% for forwarder in forwarders %}
+    {{ forwarder }};
 {% endfor %}
   };
 {% endif %}
@@ -57,23 +57,26 @@ zone "." {
 
 {% for zone in dns_zones %}
 zone "{{ zone.name }}" {
-  type {{ zone.type | default('master') }};
-{% if zone.type is not defined or zone.type == "master" %}
-  file "{{ dns_datadir }}/{{ zone.name }}.conf";
+  type {{ zone.type }};
+{% if zone.type != "forward" %}
+  file "{{ dns_datadir }}/{{ zone.name }}.db";
 {% endif %}
-{% if zone.dns_zone_forwarders is defined %}
+{% if zone.type == "forward" %}
   forwarders {
-{% for zone_forwarder in zone.dns_zone_forwarders %}
-    {{ zone_forwarder }};
+{% for forwarder in zone.forwarders %}
+    {{ forwarder }};
 {% endfor %}
-{% if zone.masters is defined %}
-{% for master in zone.masters %}
-    { {{ master | join(";") }}; };
-{% endfor %}
+  };
 {% endif %}
+{% if zone.type == "secondary" %}
+  primaries {
+{% for primary in zone.primaries %}
+    {{ primary }};
+{% endfor %}
   };
 {% endif %}
 };
+
 {% endfor %}
 
 include "{{ dns_confdir }}/rndc.key";

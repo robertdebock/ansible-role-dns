@@ -19,7 +19,119 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.dns
-      dns_port: 5353
+      dns_allow_transfer:
+        - none
+        - "127.0.0.1"
+      dns_zones:
+        - name: localhost
+          type: primary
+          soa: localhost
+          serial: 1
+          refresh: 604800
+          retry: 86400
+          expire: 2419200
+          ttl: 604800
+          records:
+            - name: "@"
+              type: NS
+              value: localhost.
+            - name: "@"
+              value: "127.0.0.1"
+            - name: "@"
+              type: AAAA
+              value: "::1"
+        - name: "127.in-addr.arpa"
+          ttl: 604800
+          type: primary
+          records:
+            - name: "@"
+              type: NS
+              value: localhost.
+            - name: "1.0.0"
+              type: PTR
+              value: localhost.
+        - name: "0.in-addr.arpa"
+          type: primary
+          records:
+            - name: "@"
+              type: NS
+              value: localhost.
+
+        - name: "255.in-addr.arpa"
+          type: primary
+          records:
+            - name: "@"
+              type: NS
+              value: localhost.
+        - name: example.com
+          type: primary
+          ttl: 604800
+          ns:
+            - name: dns1.example.com.
+            - name: dns2.example.com.
+          mx:
+            - name: mail1.example.com.
+              priority: 10
+            - name: mail2.example.com.
+              priority: 20
+          records:
+            - name: dns1
+              value: "127.0.0.1"
+            - name: dns2
+              value: "127.0.0.1"
+            - name: www
+              value: "127.0.0.1"
+            - name: dns1
+              value: "127.0.0.1"
+            - name: dns2
+              value: "127.0.0.1"
+            - name: mail1
+              value: "127.0.0.1"
+            - name: mail2
+              value: "127.0.0.1"
+        - name: forwarded.example.com
+          type: forward
+          forwarders:
+            - "1.1.1.1"
+            - "8.8.8.8"
+        - name: secondary.example.com
+          type: secondary
+          primaries:
+            - "127.0.0.1"
+            - "127.0.0.2"
+        - name: lab.controlplane.info
+          type: primary
+          ttl: 600
+          ns:
+            - name: ns.lab.controlplane.info.
+          mx:
+            - name: mail1.lab.controlplane.info.
+              priority: 10
+            - name: mail2.lab.controlplane.info.
+              priority: 20
+          records:
+            - name: ns
+              value: "192.168.254.27"
+            - name: git
+              value: "192.168.254.19"
+            - name: dl380
+              value: "192.168.254.27"
+            - name: mail1
+              value: "192.168.123.123"
+            - name: mail2
+              value: "192.168.123.123"
+        - name: forwarded.lab.controlplane.info
+          type: forward
+          ns:
+            - name: forwarded.lab.controlplane.info.
+          records:
+            - name: ns
+              value: "192.168.254.27"
+            - name: "@"
+              value: "192.168.123.123"
+          forwarders:
+            - "9.9.9.9"
+            - "8.8.8.8"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-dns/blob/master/molecule/default/prepare.yml):
@@ -55,6 +167,7 @@ dns_caching_dns: yes
 # A list of zones and properties per zone.
 dns_zones:
   - name: localhost
+    type: primary
     soa: localhost
     serial: 1
     refresh: 604800
@@ -70,9 +183,9 @@ dns_zones:
       - name: "@"
         type: AAAA
         value: "::1"
-
   - name: "127.in-addr.arpa"
     ttl: 604800
+    type: primary
     records:
       - name: "@"
         type: NS
@@ -80,78 +193,40 @@ dns_zones:
       - name: "1.0.0"
         type: PTR
         value: localhost.
-
   - name: "0.in-addr.arpa"
+    type: primary
     records:
       - name: "@"
         type: NS
         value: localhost.
-
   - name: "255.in-addr.arpa"
+    type: primary
     records:
       - name: "@"
         type: NS
         value: localhost.
-
-  - name: example.com
-    ttl: 604800
-    ns:
-      - name: dns1.example.com.
-      - name: dns2.example.com.
-    mx:
-      - name: mail1.example.com.
-        priority: 10
-      - name: mail2.example.com.
-        priority: 20
-    records:
-      - name: dns1
-        value: "127.0.0.1"
-      - name: dns2
-        value: "127.0.0.1"
-      - name: www
-        value: "127.0.0.1"
-      - name: dns1
-        value: "127.0.0.1"
-      - name: dns2
-        value: "127.0.0.1"
-      - name: mail1
-        value: "127.0.0.1"
-      - name: mail2
-        value: "127.0.0.1"
-
-  - name: forwarded.example.com
-    type: forward
-    dns_zone_forwarders:
-      - "1.1.1.1"
-      - "8.8.8.8"
-
-  - name: slave.example.com
-    type: slave
-    masters:
-      - "127.0.0.1"
-      - "127.0.0.2"
 
 # An optional list of acls to allow recursion. ("any" and "none" are always available.)
 dns_allow_recursion:
   - none
 
 # An optional list of IPv4 on which the DNS server will listen. ("any" and "none" are always available.)
-dns_options_listen_on:
+dns_listen_on:
   - any
 
 # A optional list of IPv6 on which the DNS server will listen. ("any" and "none" are always available.)
-dns_options_listen_on_v6:
+dns_listen_on_v6:
   - any
 
 # An optional list of IP which are allowed to query the server. ("any" and "none" are always available.)
 # Default: "any"
-# dns_options_allow_query:
+# dns_allow_query:
 #  - any
 #  - "127.0.0.1"
 
 # An optional list of IP which are allowed to run a AXFR query. ("any" and "none" are always available.)
 # Default: "none"
-# dns_options_allow_transfer:
+# dns_allow_transfer:
 #   - none
 #   - "172.16.0.1"
 
@@ -159,43 +234,10 @@ dns_options_listen_on_v6:
 dns_pid_file: /run/named/named.pid
 
 # An optional setting to forward traffic to other DNS servers.
-# dns_options_forwarders:
+# dns_forwarders:
 #   - "1.1.1.1"
 #   - "8.8.8.8"
 
-# Another example thanks to @blaisep.
-# dns_zones:
-#   - name: lab.controlplane.info
-#     ttl: 600
-#     ns:
-#       - name: ns.lab.controlplane.info.
-#     mx:
-#       - name: mail1.lab.controlplane.info.
-#         priority: 10
-#       - name: mail2.lab.controlplane.info.
-#         priority: 20
-#     records:
-#       - name: ns
-#         value: "192.168.254.27"
-#       - name: git
-#         value: "192.168.254.19"
-#       - name: dl380
-#         value: "192.168.254.27"
-#       - name: mail1
-#         value: "192.168.123.123"
-#       - name: mail2
-#         value: "192.168.123.123"
-#   - name: forwarded.lab.controlplane.info
-#     ns:
-#       - name: forwarded.lab.controlplane.info.
-#     records:
-#       - name: ns
-#         value: "192.168.254.27"
-#       - name: "@"
-#         value: "192.168.123.123"
-#     dns_zone_forwarders:
-#       - "9.9.9.9"
-#       - "8.8.8.8"
 ```
 
 ## [Requirements](#requirements)
