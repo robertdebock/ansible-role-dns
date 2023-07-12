@@ -32,7 +32,6 @@
       - item.type is defined
       - item.type is string
       - item.type in [ "forward", "primary", "secondary" ]
-
     quiet: yes
   loop: "{{ dns_zones }}"
   loop_control:
@@ -47,6 +46,7 @@
       - item.forwarders is defined
       - item.forwarders is iterable
       - item.forwarders | length > 0
+    quiet: yes
   loop: "{{ dns_zones }}"
   loop_control:
     label: "{{ item.name }}"
@@ -61,6 +61,7 @@
       - item.primaries is defined
       - item.primaries is iterable
       - item.primaries | length > 0
+    quiet: yes
   loop: "{{ dns_zones }}"
   loop_control:
     label: "{{ item.name }}"
