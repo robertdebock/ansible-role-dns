@@ -9,7 +9,7 @@ exclude_paths:
   - ./molecule/default/collections.yml
   - ./.tox
   - ./.cache
-  - ./.github
+  - .github
   - ./requirements.yml
 
 skip_list:
