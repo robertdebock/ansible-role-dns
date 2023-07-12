@@ -24,7 +24,7 @@
 
     - name: Test resolving www.example.com
       ansible.builtin.command:
-        cmd: nslookup -port=5353 www.example.com 127.0.0.1
+        cmd: nslookup www.example.com 127.0.0.1
       changed_when: no
 
   handlers:
