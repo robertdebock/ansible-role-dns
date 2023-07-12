@@ -66,7 +66,7 @@
   notify:
     - Rndc reload
 
-- name: Create zone files
+- name: Create zone file
   ansible.builtin.template:
     src: zone.j2
     dest: "{{ dns_datadir }}/{{ item.name }}.db"
