@@ -237,7 +237,6 @@ dns_pid_file: /run/named/named.pid
 # dns_forwarders:
 #   - "1.1.1.1"
 #   - "8.8.8.8"
-
 ```
 
 ## [Requirements](#requirements)
