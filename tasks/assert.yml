@@ -1,27 +1,27 @@
 ---
 
-- name: assert | Test if dns_port is set correctly
+- name: assert | Test dns_port
   ansible.builtin.assert:
     that:
       - dns_port is defined
       - dns_port is number
     quiet: yes
 
-- name: assert | Test if dns_caching_dns is set correctly
+- name: assert | Test dns_caching_dns
   ansible.builtin.assert:
     that:
       - dns_caching_dns is defined
       - dns_caching_dns is boolean
     quiet: yes
 
-- name: assert | Test if dns_zones is set correctly
+- name: assert | Test dns_zones
   ansible.builtin.assert:
     that:
       - dns_zones is defined
       - dns_zones is iterable
     quiet: yes
 
-- name: assert | Test if item in dns_zones is set correctly
+- name: assert | Test item in dns_zones
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -40,7 +40,7 @@
     - dns_zones is defined
     - item.type is undefined
 
-- name: assert | Test if item in dns_zones is set correctly for forward
+- name: assert | Test item in dns_zones for forward
   ansible.builtin.assert:
     that:
       - item.forwarders is defined
@@ -55,7 +55,7 @@
     - item.type is defined
     - item.type == "forward"
 
-- name: assert | Test if item in dns_zones is set correctly for secondary
+- name: assert | Test item in dns_zones for secondary
   ansible.builtin.assert:
     that:
       - item.primaries is defined
@@ -70,7 +70,7 @@
     - item.type is defined
     - item.type == "secondary"
 
-- name: assert | Test if dns_allow_recursion is set correctly
+- name: assert | Test dns_allow_recursion
   ansible.builtin.assert:
     that:
       - dns_allow_recursion is iterable
@@ -78,7 +78,7 @@
   when:
     - dns_allow_recursion is defined
 
-- name: assert | Test if dns_listen_on is set correctly
+- name: assert | Test dns_listen_on
   ansible.builtin.assert:
     that:
       - dns_listen_on is iterable
@@ -86,7 +86,7 @@
   when:
     - dns_listen_on is defined
 
-- name: assert | Test if item in dns_listen_on is set correctly for strings
+- name: assert | Test item in dns_listen_on for strings
   ansible.builtin.assert:
     that:
       - item in [ "any", "none" ] or
@@ -99,7 +99,7 @@
     - dns_listen_on is defined
     - item is string
 
-- name: assert | Test if item in dns_listen_on is set correctly
+- name: assert | Test item in dns_listen_on
   ansible.builtin.assert:
     that:
       - item is number
@@ -113,7 +113,7 @@
     - dns_listen_on is defined
     - item is not string
 
-- name: assert | Test if dns_listen_on_v6 is set correctly
+- name: assert | Test dns_listen_on_v6
   ansible.builtin.assert:
     that:
       - dns_listen_on_v6 is iterable
@@ -121,7 +121,7 @@
   when:
     - dns_listen_on_v6 is defined
 
-- name: assert | Test if item in dns_listen_on_v6 is set correctly
+- name: assert | Test item in dns_listen_on_v6
   ansible.builtin.assert:
     that:
       - item is defined
@@ -134,7 +134,7 @@
   when:
     - dns_listen_on_v6 is defined
 
-- name: assert | Test if dns_allow_query is set correctly
+- name: assert | Test dns_allow_query
   ansible.builtin.assert:
     that:
       - dns_allow_query is iterable
@@ -142,7 +142,7 @@
   when:
     - dns_allow_query is defined
 
-- name: assert | Test if dns_forwarders is set correctly
+- name: assert | Test dns_forwarders
   ansible.builtin.assert:
     that:
       - dns_forwarders is iterable
@@ -150,7 +150,7 @@
   when:
     - dns_forwarders is defined
 
-- name: assert | Test if item in forwarders is set correctly
+- name: assert | Test item in forwarders
   ansible.builtin.assert:
     that:
       - item is defined
