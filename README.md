@@ -2,9 +2,9 @@
 
 Install and configure dns on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-dns/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dns/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dns/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dns)|[![quality](https://img.shields.io/ansible/quality/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![downloads](https://img.shields.io/ansible/role/d/21885)](https://galaxy.ansible.com/robertdebock/dns)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dns.svg)](https://github.com/robertdebock/ansible-role-dns/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-dns/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dns/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dns/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dns)|[![downloads](https://img.shields.io/ansible/role/d/24477)](https://galaxy.ansible.com/robertdebock/dns)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dns.svg)](https://github.com/robertdebock/ansible-role-dns/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -278,7 +278,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-dns/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-dns/issues).
 
 ## [License](#license)
 
