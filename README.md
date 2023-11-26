@@ -1,4 +1,4 @@
-# Ansible role [dns](#dns)
+# [Ansible role dns](#dns)
 
 Install and configure dns on your system.
 
