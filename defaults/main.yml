@@ -5,7 +5,7 @@
 dns_port: 53
 
 # Should the DNS server be a caching DNS server?
-dns_caching_dns: yes
+dns_caching_dns: true
 
 # A list of zones and properties per zone.
 dns_zones:

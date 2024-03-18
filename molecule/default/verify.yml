@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     _nslookup_package:
@@ -25,7 +25,7 @@
     - name: Test resolving www.example.com
       ansible.builtin.command:
         cmd: nslookup www.example.com 127.0.0.1
-      changed_when: no
+      changed_when: false
 
   handlers:
     - name: Uninstall nslookup

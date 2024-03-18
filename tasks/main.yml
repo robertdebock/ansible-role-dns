@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install dns
@@ -40,7 +40,7 @@
   ansible.builtin.user:
     name: "{{ dns_owner }}"
     state: present
-    system: yes
+    system: true
 
 - name: Generate rndc key
   ansible.builtin.command:
@@ -92,7 +92,7 @@
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
-    backup: yes
+    backup: true
   notify:
     - Restart dns
 
@@ -116,11 +116,11 @@
 
     - name: Systemctl daemon-reload
       ansible.builtin.systemd:
-        daemon_reload: yes
-      changed_when: no
+        daemon_reload: true
+      changed_when: false
 
 - name: Start and enable dns
   ansible.builtin.service:
     name: "{{ dns_service }}"
     state: started
-    enabled: yes
+    enabled: true
