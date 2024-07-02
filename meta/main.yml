@@ -16,7 +16,6 @@ galaxy_info:
         - Candidate
     - name: EL
       versions:
-        - "8"
         - "9"
     - name: Debian
       versions:
