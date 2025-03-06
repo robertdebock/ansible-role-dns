@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: ansible-role-dns
+    - role: robertdebock.dns
       dns_allow_transfer:
         - none
         - "127.0.0.1"
