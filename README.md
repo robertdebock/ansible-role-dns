@@ -237,6 +237,10 @@ dns_pid_file: /run/named/named.pid
 # dns_forwarders:
 #   - "1.1.1.1"
 #   - "8.8.8.8"
+
+# An optional setting to specify the URL to download the root hints file,
+# containing a list of authoritative root DNS servers.
+dns_root_hints_url: https://www.internic.net/domain/named.root
 ```
 
 ## [Requirements](#requirements)
