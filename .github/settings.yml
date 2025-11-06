@@ -5,4 +5,4 @@
 repository:
   description: Install and configure dns on your system.
   homepage: https://robertdebock.nl/
-  topics: bind, dns, networking, system, resolving, named, ansible, molecule, tox, playbook
+  topics: bind, dns, networking, system, resolving, named, ansible, molecule, playbook
