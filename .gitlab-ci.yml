@@ -35,8 +35,6 @@ molecule:
         tag: "latest"
       - image: "ubuntu"
         tag: "jammy"
-      - image: "ubuntu"
-        tag: "focal"
 
 galaxy:
   image: python:3.13
