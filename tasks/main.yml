@@ -98,7 +98,7 @@
 
 - name: Place systemd override
   when:
-    - ansible_service_mgr == "systemd"
+    - ansible_facts['service_mgr'] == "systemd"
   block:
     - name: Create service.d {{ dns_service }}
       ansible.builtin.file:
