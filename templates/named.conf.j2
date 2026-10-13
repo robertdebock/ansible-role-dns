@@ -39,9 +39,9 @@ options {
     none;
 {% endif %}
   };
-{% if forwarders is defined %}
+{% if dns_forwarders is defined %}
   forwarders {
-{% for forwarder in forwarders %}
+{% for forwarder in dns_forwarders %}
     {{ forwarder }};
 {% endfor %}
   };
