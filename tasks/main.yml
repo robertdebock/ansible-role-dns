@@ -117,7 +117,8 @@
     - name: Systemctl daemon-reload
       ansible.builtin.systemd:
         daemon_reload: true
-      changed_when: false
+      changed_when:
+        - false
 
 - name: Start and enable dns
   ansible.builtin.service:
